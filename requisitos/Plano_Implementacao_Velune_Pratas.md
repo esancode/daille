@@ -35,7 +35,6 @@ Todo o gerenciamento acontecerá ali.
 
 # FASE 1 --- Planejamento
 
--   [ ] Criar repositório Git
 -   [ ] Criar projeto Next.js
 -   [ ] Configurar Tailwind
 -   [ ] Configurar ESLint
