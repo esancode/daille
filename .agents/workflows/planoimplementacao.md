@@ -1,3 +1,7 @@
+---
+description: Plano de Implementação
+---
+
 # Plano de Implementação por Tarefas --- Velune Pratas
 
 > Objetivo: seguir este documento do início ao fim até a loja estar
