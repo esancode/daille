@@ -1,7 +1,9 @@
+import { CartSidebar } from "@/components/cart/CartSideBar";
+
 export default function Home() {
   return (
     <main>
-      <h1>Velune Pratas</h1>
+      <CartSidebar />
     </main>
   );
 }
