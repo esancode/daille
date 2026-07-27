@@ -1,21 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/hooks/useCart";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { CartSidebar } from "@/components/cart/CartSideBar";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { ClientLayoutWrapper } from "@/components/layout/ClientLayoutWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -30,18 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${inter.variable} ${playfair.variable} bg-white text-zinc-950 font-sans`}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+      </head>
+      <body className={`${inter.variable} ${montserrat.variable} bg-surface text-on-surface font-sans`}>
         <CartProvider>
-          <div className="flex flex-col min-h-screen">
-            <AnnouncementBar />
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <CartSidebar />
-            <WhatsAppButton />
-          </div>
+          <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
         </CartProvider>
       </body>
     </html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Dashboard | VELUNE PRATAS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-secondary-container": "#616363",
+                    "inverse-on-surface": "#f1f1f1",
+                    "on-surface": "#1b1b1b",
+                    "on-primary-fixed-variant": "#474747",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-tertiary-container": "#848484",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#5e5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-dim": "#dadada",
+                    "surface-bright": "#f9f9f9",
+                    "on-surface-variant": "#4c4546",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-primary-container": "#848484",
+                    "on-secondary-fixed-variant": "#454747",
+                    "error-container": "#ffdad6",
+                    "outline": "#7e7576",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-variant": "#e2e2e2",
+                    "secondary-container": "#dfe0e0",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eeeeee",
+                    "surface-container-low": "#f3f3f3",
+                    "background": "#f9f9f9",
+                    "primary-fixed": "#e2e2e2",
+                    "secondary": "#5d5f5f",
+                    "inverse-surface": "#303030",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000000",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "outline-variant": "#cfc4c5",
+                    "tertiary-container": "#1b1b1b",
+                    "on-primary-fixed": "#1b1b1b",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "on-background": "#1b1b1b",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c6c6c6",
+                    "primary-container": "#1b1b1b",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "primary": "#000000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "0px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "gutter": "32px",
+                    "margin-desktop": "64px",
+                    "section-gap": "128px",
+                    "margin-mobile": "24px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-xl": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "button-text": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "button-text": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1b1b1b;
+            -webkit-font-smoothing: antialiased;
+        }
+        * {
+            border-radius: 0 !important;
+        }
+        .order-row:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        .order-row:hover button {
+            border-color: #fff;
+            background-color: #fff;
+            color: #000;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-primary h-20 flex justify-between items-center px-gutter">
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary hover:text-on-primary p-2 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">VELUNE PRATAS</h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-bold text-label-bold text-primary border-b-2 border-primary py-2 transition-opacity active:opacity-80" href="#">DASHBOARD</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary py-2 transition-opacity active:opacity-80" href="#">CATÁLOGO</a>
+<a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary py-2 transition-opacity active:opacity-80" href="#">CONTATO</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary hover:text-on-primary p-2 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 pt-20">
+<!-- NavigationDrawer (Sidebar) -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-80px)] w-64 border-r border-primary bg-surface py-8 sticky top-20">
+<div class="px-6 mb-8">
+<h2 class="font-label-bold text-label-bold text-primary uppercase opacity-50">ACCOUNT</h2>
+</div>
+<nav class="flex flex-col">
+<a class="bg-primary text-on-primary flex items-center px-6 py-4 w-full scale-95 transition-transform font-label-bold text-label-bold uppercase" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="package_2">package_2</span>
+                    ORDERS
+                </a>
+<a class="text-primary hover:bg-secondary-container flex items-center px-6 py-4 w-full transition-all font-label-bold text-label-bold uppercase" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="person">person</span>
+                    PROFILE
+                </a>
+<a class="text-primary hover:bg-secondary-container flex items-center px-6 py-4 w-full transition-all font-label-bold text-label-bold uppercase" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="location_on">location_on</span>
+                    ADDRESS
+                </a>
+<div class="mt-auto border-t border-primary/10 pt-4">
+<a class="text-primary hover:bg-secondary-container flex items-center px-6 py-4 w-full transition-all font-label-bold text-label-bold uppercase" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="logout">logout</span>
+                        LOGOUT
+                    </a>
+</div>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 px-margin-mobile md:px-margin-desktop py-12 md:py-16">
+<!-- Welcome Banner -->
+<section class="mb-section-gap">
+<div class="border-l-[12px] border-primary pl-6 py-4">
+<h2 class="font-headline-xl text-headline-xl uppercase tracking-tighter max-w-2xl">
+                        BEM-VINDA, MARIA!
+                    </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 uppercase tracking-widest">Seu universo em prata está aqui.</p>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-16">
+<!-- Order History -->
+<div class="xl:col-span-2">
+<div class="bg-primary text-on-primary py-4 px-6 mb-8">
+<h3 class="font-label-bold text-label-bold uppercase tracking-[0.2em]">HISTÓRICO DE PEDIDOS</h3>
+</div>
+<div class="border-t border-primary">
+<!-- Order Row 1 -->
+<div class="order-row flex flex-col md:flex-row justify-between items-start md:items-center py-8 px-4 border-b border-primary transition-all duration-300">
+<div class="mb-4 md:mb-0">
+<span class="font-label-bold text-label-bold block opacity-60">#VP-1023</span>
+<span class="font-headline-md text-headline-md">12/05/2024</span>
+</div>
+<div class="mb-4 md:mb-0">
+<span class="font-label-bold text-label-bold uppercase block px-3 py-1 border border-current">ENTREGUE</span>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-button-text text-button-text uppercase tracking-widest hover:bg-surface hover:text-primary border-2 border-primary transition-colors">
+                                VER DETALHES
+                            </button>
+</div>
+<!-- Order Row 2 -->
+<div class="order-row flex flex-col md:flex-row justify-between items-start md:items-center py-8 px-4 border-b border-primary transition-all duration-300">
+<div class="mb-4 md:mb-0">
+<span class="font-label-bold text-label-bold block opacity-60">#VP-1019</span>
+<span class="font-headline-md text-headline-md">28/04/2024</span>
+</div>
+<div class="mb-4 md:mb-0">
+<span class="font-label-bold text-label-bold uppercase block px-3 py-1 border border-current">ENTREGUE</span>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-button-text text-button-text uppercase tracking-widest hover:bg-surface hover:text-primary border-2 border-primary transition-colors">
+                                VER DETALHES
+                            </button>
+</div>
+<!-- Order Row 3 -->
+<div class="order-row flex flex-col md:flex-row justify-between items-start md:items-center py-8 px-4 border-b border-primary transition-all duration-300">
+<div class="mb-4 md:mb-0">
+<span class="font-label-bold text-label-bold block opacity-60">#VP-0992</span>
+<span class="font-headline-md text-headline-md">15/03/2024</span>
+</div>
+<div class="mb-4 md:mb-0">
+<span class="font-label-bold text-label-bold uppercase block px-3 py-1 border border-current">ENTREGUE</span>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-button-text text-button-text uppercase tracking-widest hover:bg-surface hover:text-primary border-2 border-primary transition-colors">
+                                VER DETALHES
+                            </button>
+</div>
+</div>
+</div>
+<!-- Profile Snippet -->
+<aside class="space-y-12">
+<div class="bg-surface border-2 border-primary p-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-16 h-16 bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-3xl" data-icon="person">person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md uppercase">MEUS DADOS</h4>
+</div>
+</div>
+<div class="space-y-6 mb-10">
+<div>
+<label class="font-label-bold text-label-bold uppercase opacity-50 block mb-1">NOME</label>
+<p class="font-body-lg text-body-lg font-bold">MARIA SOUZA</p>
+</div>
+<div class="border-t border-primary/10 pt-4">
+<label class="font-label-bold text-label-bold uppercase opacity-50 block mb-1">EMAIL</label>
+<p class="font-body-lg text-body-lg">maria@example.com</p>
+</div>
+<div class="border-t border-primary/10 pt-4">
+<label class="font-label-bold text-label-bold uppercase opacity-50 block mb-1">MEMBRO DESDE</label>
+<p class="font-body-lg text-body-lg">JANEIRO 2024</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 font-button-text text-button-text uppercase tracking-[0.2em] hover:bg-transparent hover:text-primary border-2 border-primary transition-all">
+                            EDITAR DADOS
+                        </button>
+</div>
+<!-- Editorial Image Block -->
+<div class="relative group cursor-crosshair">
+<div class="absolute inset-0 border-2 border-primary translate-x-2 translate-y-2 -z-10 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></div>
+<img class="w-full aspect-[4/5] object-cover border-2 border-primary grayscale" data-alt="A high-contrast luxury photography of a sleek sterling silver bracelet resting on a slab of rough black obsidian rock. The lighting is harsh and dramatic, creating sharp white highlights and deep black shadows. The composition is minimalist and editorial, evoking a premium jewelry brand aesthetic in a monochrome palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQTkdppKso_zF4ZY3CwYBVZ5q3x8-LIJIewmAfMrw4gA4C_AcQtqx6bne-jGvQtvlIzKFx-F7ieCGWh4mbkK1m56Zaq98RXYBkAWqPnSL8MceNYHgokl6q1C1w4nmfVBcVUNHzJNV7HdlwnWcBg1Yw9Rp76dPZBp-WXG57hrE8vH8vC9xBatsCBHIGimdltDpCvq-Nku4ZH1fqTeunPuAXdAIKgOObNNKq7IdxawDovKfYC8CEl_jpxU9GVIM-R9sMewPP311Gjlyr"/>
+<div class="absolute bottom-0 left-0 bg-primary text-on-primary p-4">
+<span class="font-label-bold text-label-bold uppercase">NOVA COLEÇÃO / 2024</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-tertiary text-on-tertiary w-full mt-section-gap">
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center px-margin-desktop py-16 gap-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold tracking-tighter">VELUNE PRATAS</h2>
+<p class="font-body-md text-body-md opacity-70 mt-2 uppercase tracking-widest">© 2024 VELUNE PRATAS. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-bold text-label-bold uppercase opacity-70 hover:opacity-100 underline transition-opacity" href="#">PRIVACY POLICY</a>
+<a class="font-label-bold text-label-bold uppercase opacity-70 hover:opacity-100 underline transition-opacity" href="#">TERMS OF SERVICE</a>
+<a class="font-label-bold text-label-bold uppercase opacity-70 hover:opacity-100 underline transition-opacity" href="#">SHIPPING INFO</a>
+</div>
+<a class="inline-flex items-center gap-3 border-2 border-on-tertiary px-8 py-4 font-button-text text-button-text uppercase tracking-widest hover:bg-on-tertiary hover:text-tertiary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+                INSTAGRAM
+            </a>
+</div>
+</footer>
+<script>
+        // Micro-interaction for page loading
+        document.addEventListener('DOMContentLoaded', () => {
+            const main = document.querySelector('main');
+            main.style.opacity = '0';
+            main.style.transform = 'translateY(20px)';
+            main.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            
+            setTimeout(() => {
+                main.style.opacity = '1';
+                main.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Interactive hover effects for buttons
+        const buttons = document.querySelectorAll('button, a');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.98)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

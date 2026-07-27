@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELUNE PRATAS ADMIN - VISÃO GERAL</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for minimalist feel */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f9f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+        /* Focus state for accessibility */
+        *:focus-visible {
+            outline: 2px solid #000;
+            outline-offset: 2px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#454747",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#cfc4c5",
+                    "secondary": "#5d5f5f",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-primary-fixed": "#1b1b1b",
+                    "on-background": "#1b1b1b",
+                    "inverse-surface": "#303030",
+                    "surface-tint": "#5e5e5e",
+                    "secondary-container": "#dfe0e0",
+                    "on-tertiary-container": "#838484",
+                    "outline": "#7e7576",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-variant": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "primary-container": "#1b1b1b",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "surface": "#f9f9f9",
+                    "on-secondary-container": "#616363",
+                    "surface-dim": "#dadada",
+                    "on-primary-container": "#848484",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-container": "#eeeeee",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#000000",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "primary-fixed": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "primary": "#000000",
+                    "on-surface-variant": "#4c4546",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "inverse-on-surface": "#f1f1f1",
+                    "inverse-primary": "#c6c6c6",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-surface": "#1b1b1b",
+                    "tertiary-container": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f3f3f3",
+                    "tertiary-fixed": "#e2e2e2",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-bright": "#f9f9f9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "lg": "32px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "unit": "4px",
+                    "xl": "64px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "display-xl": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "button-text": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "label-caps": ["Montserrat"]
+            },
+            "fontSize": {
+                    "display-xl": ["80px", { "lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                    "headline-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "button-text": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                    "headline-lg-mobile": ["32px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                    "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Navigation Drawer (Desktop Sidebar) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-screen w-[280px] flex-col z-40 bg-surface dark:bg-surface-container-lowest border-r-2 border-primary dark:border-primary-fixed">
+<div class="p-lg">
+<h1 class="font-headline-md text-headline-md text-primary dark:text-on-surface tracking-tighter">ADMINISTRATION</h1>
+</div>
+<nav class="flex-grow">
+<ul class="space-y-0">
+<!-- VISÃO GERAL (Active) -->
+<li>
+<a class="bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed flex items-center p-md w-full transition-all duration-150" href="#">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-label-caps text-label-caps">VISÃO GERAL</span>
+</a>
+</li>
+<li>
+<a class="text-primary dark:text-on-surface flex items-center p-md w-full hover:bg-surface-container-highest transition-all duration-150" href="#">
+<span class="material-symbols-outlined mr-md">shopping_bag</span>
+<span class="font-label-caps text-label-caps">PEDIDOS</span>
+</a>
+</li>
+<li>
+<a class="text-primary dark:text-on-surface flex items-center p-md w-full hover:bg-surface-container-highest transition-all duration-150" href="#">
+<span class="material-symbols-outlined mr-md">inventory_2</span>
+<span class="font-label-caps text-label-caps">PRODUTOS</span>
+</a>
+</li>
+<li>
+<a class="text-primary dark:text-on-surface flex items-center p-md w-full hover:bg-surface-container-highest transition-all duration-150" href="#">
+<span class="material-symbols-outlined mr-md">group</span>
+<span class="font-label-caps text-label-caps">CLIENTES</span>
+</a>
+</li>
+</ul>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="md:ml-[280px] min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-md w-full bg-surface dark:bg-surface-container-lowest border-b-2 border-primary dark:border-primary-fixed sticky top-0 z-30">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-on-surface">VELUNE PRATAS ADMIN</div>
+</div>
+<div class="flex items-center gap-lg">
+<span class="hidden md:inline font-button-text text-button-text uppercase text-primary">Status: Online</span>
+<button class="material-symbols-outlined text-primary scale-95 duration-100">notifications</button>
+<button class="material-symbols-outlined text-primary scale-95 duration-100">account_circle</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-grow px-margin-mobile md:px-margin-desktop py-xl max-w-container-max mx-auto w-full">
+<!-- Page Title -->
+<section class="mb-xl">
+<h2 class="font-display-xl text-[48px] md:text-display-xl uppercase leading-none tracking-tighter text-primary">
+                    VISÃO GERAL
+                </h2>
+<p class="font-label-caps text-label-caps text-secondary mt-sm opacity-60">RELATÓRIO DE DESEMPENHO EM TEMPO REAL</p>
+</section>
+<div class="flex flex-col lg:grid lg:grid-cols-12 gap-xl">
+<!-- KPI Cards Stack (Left/Main Column) -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<!-- KPI Card 1 -->
+<div class="bg-surface border-2 border-primary p-lg flex flex-col justify-between min-h-[160px]">
+<span class="font-label-caps text-label-caps text-secondary">VENDAS DO MÊS</span>
+<div class="font-display-xl text-headline-lg-mobile md:text-headline-lg mt-md">R$ 24.850</div>
+<div class="flex items-center text-green-600 mt-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-label-caps text-[10px] ml-xs">+12.4% vs MÊS ANTERIOR</span>
+</div>
+</div>
+<!-- KPI Card 2 -->
+<div class="bg-surface border-2 border-primary p-lg flex flex-col justify-between min-h-[160px]">
+<span class="font-label-caps text-label-caps text-secondary">PEDIDOS PENDENTES</span>
+<div class="font-display-xl text-headline-lg-mobile md:text-headline-lg mt-md">18</div>
+<div class="flex items-center text-error mt-xs">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+<span class="font-label-caps text-[10px] ml-xs">AÇÃO NECESSÁRIA IMEDIATA</span>
+</div>
+</div>
+<!-- KPI Card 3 -->
+<div class="bg-surface border-2 border-primary p-lg flex flex-col justify-between min-h-[160px]">
+<span class="font-label-caps text-label-caps text-secondary">VISITANTES</span>
+<div class="font-display-xl text-headline-lg-mobile md:text-headline-lg mt-md">3.402</div>
+<div class="flex items-center text-primary mt-xs">
+<span class="material-symbols-outlined text-sm">person</span>
+<span class="font-label-caps text-[10px] ml-xs">TRÁFEGO ORGÂNICO EM ALTA</span>
+</div>
+</div>
+</div>
+<!-- Table and Actions (Right/Secondary Column) -->
+<div class="lg:col-span-8 flex flex-col gap-xl">
+<!-- Recent Orders Table -->
+<div class="border-2 border-primary overflow-hidden">
+<div class="bg-primary text-on-primary p-md">
+<h3 class="font-label-caps text-label-caps uppercase">ÚLTIMOS PEDIDOS</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-2 border-primary bg-surface-container-highest">
+<th class="px-md py-md font-label-caps text-label-caps">ID</th>
+<th class="px-md py-md font-label-caps text-label-caps">PEDIDO</th>
+<th class="px-md py-md font-label-caps text-label-caps">TOTAL</th>
+<th class="px-md py-md font-label-caps text-label-caps">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/20">
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-md py-md font-body-md">#VP901</td>
+<td class="px-md py-md font-body-md uppercase">Anel Prata 925 Luna</td>
+<td class="px-md py-md font-body-md">R$ 189,00</td>
+<td class="px-md py-md">
+<span class="bg-primary text-on-primary px-sm py-xs font-label-caps text-[10px]">PROCESSANDO</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-md py-md font-body-md">#VP900</td>
+<td class="px-md py-md font-body-md uppercase">Colar Elos Minimalistas</td>
+<td class="px-md py-md">R$ 420,00</td>
+<td class="px-md py-md">
+<span class="border border-primary px-sm py-xs font-label-caps text-[10px]">ENVIADO</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-md py-md font-body-md">#VP899</td>
+<td class="px-md py-md font-body-md uppercase">Brinco Argola Gota</td>
+<td class="px-md py-md">R$ 125,00</td>
+<td class="px-md py-md">
+<span class="bg-primary text-on-primary px-sm py-xs font-label-caps text-[10px]">PROCESSANDO</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-md py-md font-body-md">#VP898</td>
+<td class="px-md py-md font-body-md uppercase">Pulseira Riviera Luxo</td>
+<td class="px-md py-md">R$ 890,00</td>
+<td class="px-md py-md">
+<span class="bg-surface-container-highest px-sm py-xs font-label-caps text-[10px]">CONCLUÍDO</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Quick Actions Section -->
+<div class="flex flex-col md:flex-row gap-md">
+<button class="flex-1 bg-primary text-on-primary p-lg font-button-text text-button-text uppercase hover:bg-white hover:text-black hover:ring-2 hover:ring-black transition-all duration-200 flex items-center justify-center gap-md">
+<span class="material-symbols-outlined">add</span>
+                            ADICIONAR PRODUTO
+                        </button>
+<button class="flex-1 bg-primary text-on-primary p-lg font-button-text text-button-text uppercase hover:bg-white hover:text-black hover:ring-2 hover:ring-black transition-all duration-200 flex items-center justify-center gap-md">
+<span class="material-symbols-outlined">analytics</span>
+                            RELATÓRIOS
+                        </button>
+</div>
+<!-- Visual Accent Card -->
+<div class="relative overflow-hidden group">
+<div class="aspect-[21/9] w-full border-2 border-primary flex items-center justify-center">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 grayscale" data-alt="A high-contrast, black and white macro photograph of shimmering sterling silver jewelry pieces scattered artistically on a white surface. The lighting is harsh and directional, creating deep black shadows and bright white highlights that emphasize the metallic texture. The overall aesthetic is minimalist, premium, and sophisticated, perfectly aligned with a luxury jewelry brand's editorial style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6mdA2StqoRbs7-TomFWpz42-f4UOB8zQhqKyZnLd_p3ystscnXGgg8mtJ9j-2fdox5Pl39JUmFaYfdgPckKy6QigKrbHZcORcIcT956xO1eOhoc8mOPtws-Ur8U04dfypuYTph-4DlYk1mxQr_7ZUb4RbI-ouKdRzPzum0xVOnVoLHGVRsATeRHcpNlr4Z0PKI008KzvcdCphlg065toZSfwaG2lYJeFbZGz1zE0p8c-5BxRvbmkCpY8R25kvllkB7zA6YOKz8EtS')"></div>
+<div class="relative z-10 p-lg text-center bg-white/80 backdrop-blur-sm border-2 border-primary">
+<h4 class="font-headline-md text-headline-md uppercase text-primary">CURADORIA VELUNE</h4>
+<p class="font-label-caps text-label-caps text-secondary mt-xs">ACOMPANHE AS TENDÊNCIAS DA ESTAÇÃO</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-lg mt-xl bg-primary dark:bg-tertiary-container text-on-primary dark:text-on-tertiary-container border-t-2 border-primary">
+<div class="font-button-text text-button-text text-on-primary mb-md md:mb-0">VELUNE PRATAS ADMIN</div>
+<div class="flex gap-lg font-label-caps text-label-caps">
+<a class="text-on-primary opacity-80 hover:opacity-100 hover:tracking-widest transition-all" href="#">TERMS</a>
+<a class="text-on-primary opacity-80 hover:opacity-100 hover:tracking-widest transition-all" href="#">PRIVACY</a>
+<a class="text-on-primary opacity-80 hover:opacity-100 hover:tracking-widest transition-all" href="#">SUPPORT</a>
+</div>
+<div class="font-label-caps text-label-caps opacity-60 mt-md md:mt-0 text-[10px]">
+                © 2024 VELUNE PRATAS ADMIN
+            </div>
+</footer>
+</main>
+<!-- Mobile Side Nav Overlay Script -->
+<script>
+        const menuBtn = document.querySelector('button[class*="md:hidden"]');
+        const sidebar = document.querySelector('aside');
+        
+        menuBtn?.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('flex');
+            sidebar.classList.add('w-full', 'fixed', 'inset-0');
+        });
+
+        // Simple interaction for cards
+        document.querySelectorAll('.border-primary').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if(!card.classList.contains('bg-primary')) {
+                    card.classList.add('border-primary', 'bg-surface-container-low');
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('bg-surface-container-low');
+            });
+        });
+    </script>
+</body></html>

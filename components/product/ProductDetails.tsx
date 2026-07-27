@@ -18,6 +18,13 @@ export function ProductDetails({ produto }: ProductDetailsProps) {
 
   const [selectedImage, setSelectedImage] = useState(imagens[0].url);
 
+  const handleBuyOnWhatsApp = () => {
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511999999999";
+    const message = `Olá! Tenho interesse no produto: ${produto.nome} (Código: ${produto.codigo}).`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="w-full bg-white py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
@@ -117,9 +124,7 @@ export function ProductDetails({ produto }: ProductDetailsProps) {
               </Button>
               <Button
                 variant="secondary"
-                onClick={() => {
-                  alert("Compra individual via WhatsApp será finalizada na Fase 6!");
-                }}
+                onClick={handleBuyOnWhatsApp}
                 className="w-full py-4 text-[13px] tracking-widest uppercase"
               >
                 Comprar pelo WhatsApp

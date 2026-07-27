@@ -10,7 +10,7 @@ export function Badge({ children, variant = "primary", className = "" }: BadgePr
   const styles = {
     primary: "bg-zinc-950 text-white",
     secondary: "bg-zinc-100 text-zinc-800",
-    accent: "bg-[#D7C2A0] text-zinc-950",
+    accent: "bg-[#0A1F5C] text-white",
   };
 
   return (

@@ -8,6 +8,7 @@ interface Slide {
   id: number;
   bg: string;
   imageSrc: string;
+  imageMobileSrc?: string;
   imageAlt: string;
   imageClass: string;
   imageContainerClass: string;
@@ -23,9 +24,10 @@ const SLIDES: Slide[] = [
     id: 1,
     bg: "bg-[#0F0F0F]",
     imageSrc: "/banners/modelo_v2.png",
+    imageMobileSrc: "/banners/modelo_v2_mobile.png",
     imageAlt: "Velune Pratas Modelo",
-    imageClass: "object-contain object-center scale-200",
-    imageContainerClass: "w-full md:w-[45%] flex items-end justify-center md:justify-start h-[350px] md:h-full relative",
+    imageClass: "object-contain object-bottom origin-bottom scale-200",
+    imageContainerClass: "absolute bottom-0 md:left-6 right-0 md:right-auto w-full md:w-[48%] h-full flex items-end justify-end md:justify-start pointer-events-none z-0",
     title: (
       <>
         A Elegância <br />
@@ -42,8 +44,8 @@ const SLIDES: Slide[] = [
     bg: "bg-[#0F0F0F]",
     imageSrc: "/banners/modelo_slider_2_nova.png",
     imageAlt: "Modelo Joias Velune",
-    imageClass: "object-contain object-center scale-180",
-    imageContainerClass: "w-full md:w-[45%] flex items-end justify-center md:justify-end h-[350px] md:h-full relative",
+    imageClass: "object-contain object-bottom origin-bottom scale-160 md:scale-180",
+    imageContainerClass: "absolute bottom-0 md:right-6 left-0 md:left-auto w-full md:w-[48%] h-full flex items-end justify-center md:justify-end pointer-events-none z-0",
     title: (
       <>
         Elegância <br />
@@ -60,8 +62,8 @@ const SLIDES: Slide[] = [
     bg: "bg-[#0F0F0F]",
     imageSrc: "/banners/modelo_slider_3_hd.png",
     imageAlt: "Modelo Masculino Joias Velune",
-    imageClass: "object-contain object-center scale-170",
-    imageContainerClass: "w-full md:w-[45%] flex items-end justify-center md:justify-start h-[350px] md:h-full relative",
+    imageClass: "object-contain object-bottom origin-bottom scale-150 md:scale-170",
+    imageContainerClass: "absolute bottom-0 md:left-6 right-0 md:right-auto w-full md:w-[48%] h-full flex items-end justify-end md:justify-start pointer-events-none z-0",
     title: (
       <>
         Brilho <br />
@@ -95,35 +97,50 @@ export function HeroSlider() {
 
   return (
     <section className="relative w-full overflow-hidden group">
-      <div className="relative h-[650px] md:h-[550px] w-full flex items-end">
+      <div
+        className="flex w-full h-[650px] md:h-[550px] transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
         {SLIDES.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out flex items-end py-12 md:py-0 ${slide.bg} ${
-              index === current ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-            }`}
+            className={`w-full h-full flex-shrink-0 relative overflow-hidden flex items-center ${slide.bg}`}
           >
-            <div className={`mx-auto max-w-7xl px-6 md:px-10 w-full h-full flex flex-col gap-8 md:gap-16 justify-center ${
-              slide.reverse ? "md:flex-row-reverse" : "md:flex-row"
-            }`}>
-              <div className={slide.imageContainerClass}>
-                <div className="relative w-full h-full aspect-square md:aspect-auto">
-                  <Image
-                    src={slide.imageSrc}
-                    alt={slide.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={index === 0}
-                    className={slide.imageClass}
-                  />
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+              <div className="w-full max-w-7xl h-full mx-auto px-6 md:px-10 relative flex items-end">
+                <div className={slide.imageContainerClass}>
+                  <div className="relative w-full h-[88%] md:h-full flex items-end">
+                    <Image
+                      src={slide.imageSrc}
+                      alt={slide.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={index === 0}
+                      className={`${slide.imageClass} ${slide.imageMobileSrc ? "hidden md:block" : ""}`}
+                    />
+                    {slide.imageMobileSrc && (
+                      <Image
+                        src={slide.imageMobileSrc}
+                        alt={slide.imageAlt}
+                        fill
+                        sizes="100vw"
+                        priority={index === 0}
+                        className="object-contain object-bottom origin-bottom scale-105 block md:hidden"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div className="relative z-10 w-full md:w-[55%] flex flex-col justify-center items-start gap-6 h-full md:pl-8">
-                <h2 className="font-playfair text-[32px] md:text-[46px] font-light leading-tight tracking-[2px] uppercase text-white">
+            <div className="mx-auto max-w-7xl px-6 md:px-10 w-full h-full flex items-center relative z-10 pointer-events-auto">
+              <div className={`w-full md:w-[55%] flex flex-col justify-center items-start gap-6 py-8 md:py-0 ${
+                slide.reverse ? "md:mr-auto" : "md:ml-auto md:pl-8"
+              }`}>
+                <h2 className="font-playfair text-[32px] md:text-[46px] font-light leading-tight tracking-[2px] uppercase text-white drop-shadow-sm">
                   {slide.title}
                 </h2>
-                <p className="font-sans text-[14px] text-zinc-400 font-light tracking-wide max-w-[280px]">
+                <p className="font-sans text-[14px] text-zinc-300 font-light tracking-wide max-w-[280px] drop-shadow-sm">
                   {slide.subtitle}
                 </p>
                 <Link href={slide.buttonLink}>

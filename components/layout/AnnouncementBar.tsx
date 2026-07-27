@@ -28,9 +28,9 @@ export function AnnouncementBar() {
   }, []);
 
   return (
-    <div className="w-full bg-[#D7C2A0] py-2 overflow-hidden">
+    <div className="w-full bg-[#0A1F5C] py-2 overflow-hidden">
       <p
-        className={`text-center font-sans text-[11px] md:text-[12px] font-medium tracking-widest uppercase text-zinc-900 transition-all duration-500 ${
+        className={`text-center font-sans text-[11px] md:text-[12px] font-medium tracking-widest uppercase text-white transition-all duration-500 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >

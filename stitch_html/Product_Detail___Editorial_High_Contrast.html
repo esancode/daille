@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=EB+Garamond:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1c",
+                    "error-container": "#ffdad6",
+                    "primary": "#000000", /* Overridden to pure black for high-end monochrome */
+                    "on-secondary-fixed-variant": "#53452b",
+                    "background": "#ffffff", /* Overridden to pure white */
+                    "tertiary-container": "#222424",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-fixed": "#051b3b",
+                    "on-background": "#000000",
+                    "surface-container": "#eeeeee",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#e2e2e2",
+                    "surface-dim": "#dadada",
+                    "primary-container": "#000000",
+                    "outline": "#000000",
+                    "surface-soft": "#F5F5F5",
+                    "secondary-container": "#f6e0bc",
+                    "secondary": "#6c5c40",
+                    "on-secondary-container": "#726246",
+                    "background-pure": "#FFFFFF",
+                    "secondary-fixed-dim": "#d9c4a2",
+                    "inverse-surface": "#2f3131",
+                    "tertiary": "#000000",
+                    "primary-fixed-dim": "#b4c7ef",
+                    "on-primary-fixed-variant": "#354769",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f3f3f3",
+                    "accent-champagne": "#D7C2A0",
+                    "surface-tint": "#4d5e82",
+                    "divider-silver": "#000000",
+                    "ink-hero": "#000000",
+                    "surface-bright": "#ffffff",
+                    "primary-fixed": "#d7e2ff",
+                    "on-primary": "#ffffff",
+                    "action-navy": "#000000",
+                    "on-secondary-fixed": "#251a05",
+                    "surface": "#ffffff",
+                    "secondary-fixed": "#f6e0bc",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-primary-container": "#ffffff",
+                    "outline-variant": "#000000",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-surface-variant": "#000000",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-container": "#8a8b8b",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b4c7ef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px", /* No rounded corners as per prompt */
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "0px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "container-max": "1440px",
+                    "unit": "4px",
+                    "stack-md": "32px",
+                    "stack-lg": "64px",
+                    "gutter": "24px",
+                    "stack-sm": "16px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "button-text": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"], /* Switched to Inter for bold sans-serif headers as per prompt */
+                    "display-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button-text": ["14px", {"lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                    "display-lg": ["64px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "900"}],
+                    "headline-md": ["40px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for minimalism */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #FFFFFF; }
+        ::-webkit-scrollbar-thumb { background: #000000; }
+        
+        /* Force no rounding across all components */
+        * { border-radius: 0 !important; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- 1. Top Bar -->
+<div class="bg-primary text-on-primary py-2 text-center">
+<p class="font-label-caps text-[10px] tracking-widest uppercase">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$299</p>
+</div>
+<!-- 2. Header -->
+<header class="bg-background-pure border-b border-divider-silver sticky top-0 z-50">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-sm flex justify-between items-center">
+<div class="flex items-center gap-stack-md">
+<a class="font-headline-sm font-black tracking-[0.2em] text-primary" href="#">VELUNE PRATAS</a>
+<nav class="hidden md:flex gap-gutter">
+<a class="font-label-caps text-label-caps text-primary hover:opacity-50 transition-opacity" href="#">ANÉIS</a>
+<a class="font-label-caps text-label-caps text-primary hover:opacity-50 transition-opacity" href="#">COLARES</a>
+<a class="font-label-caps text-label-caps text-primary hover:opacity-50 transition-opacity" href="#">BRINCOS</a>
+</nav>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">search</button>
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">person</button>
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">shopping_bag</button>
+</div>
+</div>
+</header>
+<!-- 3. Hero / Product Detail -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="flex flex-col md:grid md:grid-cols-2 gap-stack-lg items-start">
+<!-- Hero Image -->
+<div class="w-full aspect-square bg-[#F9F9F9] border border-divider-silver overflow-hidden">
+<img class="w-full h-full object-contain" data-alt="A high-contrast, professional product photograph of a sculptural sterling silver ring with organic, flowing curves. The ring is centered on a stark, pure white background with hard, directional studio lighting creating a crisp, single shadow. The silver surface has a brilliant, mirror-like reflection, highlighting the premium craftsmanship and minimalist aesthetic of the jewelry piece." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUULfxhbIWtHoBvdGbONMEcdPrMbIZ6B68_k-AJ6Iz0ZWnWzT2J9qmqZxeny6rVcSLw7rKqz2WXE77DpFuhkzfXs3nV1Oruafhik0yxn_lUxiVtmk-fqLfIOYB_xml53nVvzk50YRorAzFJvkNP1X9QLqi_dY8bA9oySoisetHjIJolZOtFIKRHd1kUAZhZm0Q8gziUExK2hVaFQE0DIXE4TGTa7wzFmvFY1lHtZcKlbCNUMhpQkpuw-j9piACPPvPTUgAt9ZQRt7R"/>
+</div>
+<!-- Product Info -->
+<div class="flex flex-col justify-center h-full space-y-stack-md">
+<div class="space-y-4">
+<h1 class="font-display-lg text-display-lg uppercase leading-none">ANEL SCULPT PRATA 925</h1>
+<p class="font-headline-md text-headline-md font-bold">R$ 128,00</p>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Uma peça que transcende o tempo. O Anel Sculpt é esculpido em prata 925 legítima, apresentando um design orgânico e minimalista que celebra a pureza do metal. O toque de luxo que você merece para elevar qualquer composição com sofisticação absoluta.
+                </p>
+<div class="pt-stack-sm">
+<button class="w-full md:w-auto px-12 py-6 bg-primary text-on-primary font-button-text text-button-text uppercase tracking-widest hover:bg-white hover:text-black border-2 border-black transition-all active:scale-[0.98]">
+                        ADICIONAR AO CARRINHO
+                    </button>
+</div>
+<div class="border-t border-divider-silver pt-stack-sm space-y-2">
+<div class="flex justify-between items-center group cursor-pointer py-2">
+<span class="font-label-caps text-label-caps uppercase">DETALHES DO PRODUTO</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+<div class="flex justify-between items-center group cursor-pointer py-2">
+<span class="font-label-caps text-label-caps uppercase">GUIA DE MEDIDAS</span>
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- 4. Middle Banner -->
+<section class="bg-primary py-stack-lg my-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-mobile text-center">
+<h2 class="text-on-primary font-display-lg text-display-lg-mobile md:text-display-lg uppercase tracking-tight">
+                PRATA 925 CERTIFICADA. <br class="hidden md:block"/> O TOQUE DE LUXO QUE VOCÊ MERECE.
+            </h2>
+</div>
+</section>
+<!-- 5. Mais Desejados Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="mb-stack-md">
+<h3 class="font-headline-md text-headline-md uppercase text-center md:text-left">MAIS DESEJADOS</h3>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-[#F5F5F5] overflow-hidden mb-4 border border-transparent group-hover:border-black transition-colors">
+<img class="w-full h-full object-cover grayscale" data-alt="Close-up shot of a sterling silver hoop earring with a sharp, rectangular architectural design. The earring is set against a dark grey slate background, creating a high-contrast editorial look. Bright studio light glints off the polished silver edges, emphasizing the precision and high-end feel of the jewelry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZtHbaJiGzYHL8-Sqn4eZPjne2oEYdwHOJhVdRBRpFzrFlzjuIjBHyW8McHJYghvgQ6aYpu8mvoQuSRMa_g7pIsFi3_qcs6yrnCQlCaqvoLZowdWgj_qCVObUcT5NZWwjwktvAwlvQdaYV-x1ebRnJ-RlTomj8KU-plRmj4ZQmpExrVmZP_mwGXwrBYcWd9VactcRw0v-_sl9ShMwdHte9W4QVRJoXd50KsSUzGDORMxDmvPaMr2hassyN1Pubtmj9BgoD3sJ1gQ0T"/>
+</div>
+<div class="text-center md:text-left space-y-1">
+<p class="font-label-caps text-[11px] uppercase tracking-wider">BRINCO ARCH SILVER</p>
+<p class="font-body-md font-bold">R$ 189,00</p>
+<a class="inline-block border-b border-black text-[10px] font-bold tracking-widest uppercase mt-2" href="#">VER DETALHES</a>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-[#F5F5F5] overflow-hidden mb-4 border border-transparent group-hover:border-black transition-colors">
+<img class="w-full h-full object-cover grayscale" data-alt="A delicate sterling silver chain necklace with a single minimalist spherical pendant. The jewelry is laid out on a piece of white crinkled silk fabric, capturing soft shadows and high-key lighting. The overall mood is ethereal, clean, and extremely luxurious, maintaining a strictly monochrome white-on-white palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGyJsgQBDG7HBUmWkxOnXH82OI5NnIKIpvnVuLkA7HkINiRM9dUlQJO2v6bNJ_YqR225z0HA7DdySwHdI8HNTleAzFTrSRmGgAgkdSnIDhsfvFqhhXtWai12V7vYJfUnMeuRD6THAPUTW3zpbNLBsVe3SElPuMdR2uxXyr4CwXXNkRaoEejrHva6xNGXvxj6nQ0c4Uep4MlZ0zHGriynxQ2VBnndhpg1unqa2Z8oVjgScbWNP9j9SNkMfq9aEtiCxrmqM1wFA3kdxn"/>
+</div>
+<div class="text-center md:text-left space-y-1">
+<p class="font-label-caps text-[11px] uppercase tracking-wider">COLAR ORBE PRATA</p>
+<p class="font-body-md font-bold">R$ 215,00</p>
+<a class="inline-block border-b border-black text-[10px] font-bold tracking-widest uppercase mt-2" href="#">VER DETALHES</a>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-[#F5F5F5] overflow-hidden mb-4 border border-transparent group-hover:border-black transition-colors">
+<img class="w-full h-full object-cover grayscale" data-alt="A macro shot of a wide silver band ring with an etched geometric pattern. The ring sits on a reflective black glass surface, doubling its image in a sharp reflection. The lighting is high-contrast, with deep blacks and brilliant white highlights on the polished silver, creating a powerful and masculine editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbgijh0dDMX8bVMg7Q-bRGQzEg-nTCobqMhdneD7wtoXC7NZe4BcOoENNU-BfdfTYrfQPMKqc4qXw6FOyDvTw9x0Lq7DWmeGzY23rj03xW9-l7kKSJlfGT06KPnwL98uOsgolK6efp0tNBmNIogMrIo7VFiE8e4vxffI1eZ51ESEJcYBbscA8U86SSCBvBSqWvkRYEi2NDx0Finl37Vu2tq9IkHxnyG8PvIQ63P916l4ClUT8wfpVHcbhcXG1C5SSLHn1ZrMn21Ysv"/>
+</div>
+<div class="text-center md:text-left space-y-1">
+<p class="font-label-caps text-[11px] uppercase tracking-wider">ANEL ELO BRUTO</p>
+<p class="font-body-md font-bold">R$ 156,00</p>
+<a class="inline-block border-b border-black text-[10px] font-bold tracking-widest uppercase mt-2" href="#">VER DETALHES</a>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-[#F5F5F5] overflow-hidden mb-4 border border-transparent group-hover:border-black transition-colors">
+<img class="w-full h-full object-cover grayscale" data-alt="A high-fashion studio shot of a pair of minimalist silver drop earrings hanging in mid-air against a plain white background. The earrings consist of clean vertical lines and sharp points. The lighting is flat and clinical, emphasizing the perfection of the form and the brilliance of the high-grade silver material." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB92-K0IroIsYFymENk3Nk7esZHK91FXplycMIsGusBMHMIRgCGebelshaSjK5gdHzdF2NHpmcVNrE8lU_JMrrEOCnTesY0DB9ijIJKwsIx68uAr4uuEaoPI9xu_JQJHLaiJigkv6fBtKHOwk_kZtO5osxjGL18xtsGPGKY5ZLK0ll-ToZNUpBV-n-ZyDx7AqV4hth_55-0Ag0cPtPObqfHRJecjfaxxHQnVEkvb40MJkgubnqQbxRDMC-dFzcUOjRbI7nJqC9BzTjk"/>
+</div>
+<div class="text-center md:text-left space-y-1">
+<p class="font-label-caps text-[11px] uppercase tracking-wider">BRINCO LINEA DROP</p>
+<p class="font-body-md font-bold">R$ 142,00</p>
+<a class="inline-block border-b border-black text-[10px] font-bold tracking-widest uppercase mt-2" href="#">VER DETALHES</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Galeria de Estilo Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg border-t border-divider-silver">
+<div class="mb-stack-md">
+<h3 class="font-headline-md text-headline-md uppercase text-center">GALERIA DE ESTILO</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-gutter">
+<div class="aspect-[16/9] overflow-hidden border border-divider-silver">
+<img class="w-full h-full object-cover grayscale" data-alt="A moody, high-contrast lifestyle photograph of a woman's hands adorned with multiple sculptural silver rings. She is wearing a structured black blazer, and the shot is tightly framed on her hands against the dark fabric. The lighting is dramatic, highlighting the textures of the skin and the cold brilliance of the silver jewelry in an editorial fashion style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq6uMfplP-qlQGNJQQfx9E9xTbwXH8sV28DYwjmmdPl1YCTiEv1h7LqphSySF3bXCUzReZNckd_1s2SJit643dvV1FS_N9xvWdhxcpA9E0l6ceoIRyC88FeVABRNujP2BWlbt4vbJKqdO7ACsJzltM-n3iHPauvCVSp0NPEW1xazvxdjAG1PHzXI_zzsWHEK8f-WijdFbnqN4e8yvfwtw5AXw_luB0c55qYwBW9DmHcYRd6zumqB2Z822MaOIexCDU1qtb5YHscmn8"/>
+</div>
+<div class="aspect-square overflow-hidden border border-divider-silver">
+<img class="w-full h-full object-cover grayscale" data-alt="A close-up, desaturated image of a woman's neck and collarbone, wearing a delicate silver chain with a small geometric pendant. She is in shadow, with a single beam of light illuminating the jewelry and the texture of her skin. The aesthetic is extremely minimal and high-end, evoking a sense of quiet luxury and intimacy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb_oDn3EFz4oQ5-8EF7ohvI3XWgnWzUatZ7nLWA0S7KTn34j49ni2QWFerXwTuPVH3vxrdFwNKnBmr4TslEwMkVXaOnDt3XFbvAR1e9QQfhbhcsI6yhQu3Qf-lb5_xWAJijJcDHTpv3jkhEpAQgX4QAC6auW9jdlBxIBF3RqM0Nrv8f8-mdWSTn_-wjQJAmi8NS8r9Lg0xpXzraX1UKb7R6QeYjWIO5fc-dKnzF8AnKVOinm86rt-5obDG3j1EJfuav06yoP26Nygx"/>
+</div>
+</div>
+<div class="space-y-gutter">
+<div class="aspect-square overflow-hidden border border-divider-silver">
+<img class="w-full h-full object-cover grayscale" data-alt="An editorial shot featuring a silver ear cuff on a model's ear. The image is captured in black and white with extreme clarity and sharp focus. The model has sleek, pulled-back hair, emphasizing the clean lines of the jewelry. The background is a flat, neutral grey, ensuring all attention is on the metalwork and the high-fashion mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMZ8unZXX5GAn8Nlm7aKGOUGf61y1EYW6ohVrT7EZiumA2y-a2kbypL7rC-SG9RGVWgS-R1t7QvYvLzV8GsLlZ0mtw0BdDJm1nRNpycwa5lcKD_s7ESnu3CSas8cDWa2v44M8ial30LO_ou8NJpVBhL5jsDoPs_RYGiI4JtpK5J7toQ3oJ6dzdBMs_PXtg8W0jClk5DFYm4jDlXuDLK77RXwBnweUISQHx8fVikL71f3weQEX2dkTPpoDs7IqXQQ6tTf7tQ-hwGUDz"/>
+</div>
+<div class="aspect-[16/9] overflow-hidden border border-divider-silver">
+<img class="w-full h-full object-cover grayscale" data-alt="A flat-lay arrangement of various silver jewelry pieces—rings, chains, and bracelets—scattered artistically on a black marble surface. The white veins of the marble contrast with the black stone and the silver pieces. The composition is asymmetrical and balanced, shot from directly above with professional studio lighting that avoids harsh glares." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkkJ_HCL8W2t_9x203gP3fMc8kXEik20WVwNsMktI9rr9JhQXz5a-ssD8H1V788F8F3pHZ8T7ef20fb1RJYYI9EWyBeiIvXGyLXJ4X9BDNOxaZlho8r-WJdeL8X7NNbarq6xg0cr90LUMvZ_YpN-94js_HEzAc3xnqOPCbVOmsCsFUvo2us__ozYTgC1aUq9hIhL2Hs_9UBu9iybAA68Jto1ToKxX7IKJpwD3TYVBwg8m8qyeh_yP1RjWfNhF6GeaaEHyNrT5FicCl"/>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Footer -->
+<footer class="bg-primary text-on-primary py-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-mobile flex flex-col items-center space-y-stack-md">
+<div class="text-center">
+<h4 class="font-display-lg text-headline-md uppercase tracking-[0.3em] mb-2">VELUNE</h4>
+<p class="font-label-caps text-label-caps tracking-[0.4em] opacity-80">PRATAS</p>
+</div>
+<div class="py-stack-sm">
+<a class="px-10 py-4 border border-on-primary font-button-text text-button-text uppercase tracking-widest hover:bg-white hover:text-black transition-all" href="#">
+                    INSTAGRAM
+                </a>
+</div>
+<nav class="flex flex-wrap justify-center gap-gutter border-t border-white/20 pt-stack-md w-full max-w-2xl">
+<a class="font-label-caps text-[10px] tracking-widest hover:opacity-60 transition-opacity uppercase" href="#">COLEÇÕES</a>
+<a class="font-label-caps text-[10px] tracking-widest hover:opacity-60 transition-opacity uppercase" href="#">POLÍTICAS DE PRIVACIDADE</a>
+<a class="font-label-caps text-[10px] tracking-widest hover:opacity-60 transition-opacity uppercase" href="#">TERMOS DE USO</a>
+<a class="font-label-caps text-[10px] tracking-widest hover:opacity-60 transition-opacity uppercase" href="#">CONTATO</a>
+</nav>
+<div class="flex gap-4 opacity-70">
+<span class="material-symbols-outlined text-sm">credit_card</span>
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+<span class="material-symbols-outlined text-sm">payments</span>
+</div>
+<p class="font-label-caps text-[10px] opacity-50 pt-4">Copyright © 2023 Velune Pratas</p>
+</div>
+</footer>
+<!-- Floating WhatsApp Icon (Optional but standard for Brazilian e-commerce) -->
+<a class="fixed bottom-margin-mobile right-margin-mobile bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform z-50 flex items-center justify-center" href="#" style="border-radius: 999px !important;">
+<svg fill="currentColor" height="24" viewbox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.327-5.594l.004-.005zm-5.607 11.326a6.613 6.613 0 0 1-3.37-.916l-.243-.145-2.496.654.665-2.433-.159-.253a6.612 6.612 0 0 1-1.023-3.492c.002-3.644 2.965-6.608 6.613-6.608a6.613 6.613 0 0 1 6.612 6.611c-.002 3.645-2.967 6.61-6.612 6.61zM11.59 9.61c-.194-.097-1.147-.566-1.325-.63-.178-.066-.307-.097-.437.097-.13.193-.503.63-.616.757-.113.128-.227.144-.421.047-.194-.097-.819-.302-1.56-.963-.577-.514-.967-1.148-1.08-1.342-.113-.194-.012-.299.085-.395.087-.086.194-.227.29-.34.098-.113.13-.193.195-.323.065-.13.033-.243-.016-.34-.049-.097-.437-1.054-.598-1.442-.157-.38-.316-.328-.433-.334-.112-.006-.24-.007-.367-.007-.127 0-.334.047-.509.243-.175.195-.668.653-.668 1.593 0 .94.685 1.848.78 1.976.096.128 1.348 2.059 3.267 2.89.457.198.813.316 1.092.404.458.146.876.125 1.206.076.368-.055 1.147-.468 1.308-1.003.161-.535.161-1.003.113-1.1-.049-.097-.179-.156-.373-.253z"></path>
+</svg>
+</a>
+<script>
+        // Simple hover effects for product items to highlight luxury feel
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const img = item.querySelector('img');
+                if (img) img.style.transform = 'scale(1.05)';
+            });
+            item.addEventListener('mouseleave', () => {
+                const img = item.querySelector('img');
+                if (img) img.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

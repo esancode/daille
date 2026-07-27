@@ -1,44 +1,151 @@
 @import "tailwindcss";
 
+@theme {
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-surface: #f9f9f9;
+  --color-surface-container: #eeeeee;
+  --color-outline-variant: #cfc4c5;
+  --color-secondary: #5d5f5f;
+  --color-background: #f9f9f9;
+  --color-on-background: #1b1b1b;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+
+  --radius-DEFAULT: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+
+  --spacing-unit-xs: 4px;
+  --spacing-unit-sm: 8px;
+  --spacing-unit-md: 16px;
+  --spacing-unit-lg: 32px;
+  --spacing-gutter: 24px;
+  --spacing-section-gap: 120px;
+  --spacing-margin-mobile: 20px;
+  --spacing-margin-desktop: 80px;
+
+  --font-body-lg: "Inter", sans-serif;
+  --font-headline-lg-mobile: "Montserrat", sans-serif;
+  --font-headline-md: "Montserrat", sans-serif;
+  --font-headline-lg: "Montserrat", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-display-lg: "Montserrat", sans-serif;
+  --font-label-caps: "Inter", sans-serif;
+  --font-button-text: "Inter", sans-serif;
+}
+
+@utility text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0em;
+  font-weight: 400;
+}
+@utility text-headline-lg-mobile {
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+@utility text-headline-md {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0em;
+  font-weight: 700;
+}
+@utility text-headline-lg {
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+@utility text-body-sm {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  font-weight: 400;
+}
+@utility text-display-lg {
+  font-size: 120px;
+  line-height: 110px;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+}
+@utility text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+@utility text-button-text {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
 :root {
-  --background:#111111;
-  --surface:#1A1A1A;
-  --primary:#0058D2;
-  --white:#F8F8F8;
-  --silver:#D9D9D9;
-  --champagne:#D8C5A2;
-  --gray:#C8C8C8;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f9f9f9;
+  --foreground: #1b1b1b;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+  min-height: 100dvh;
 }
 
-@keyframes cartBounce {
-  0%, 24%, 100% { transform: translateY(0); }
-  4% { transform: translateY(-6px); }
-  8% { transform: translateY(0); }
-  12% { transform: translateY(-6px); }
-  16% { transform: translateY(0); }
-  20% { transform: translateY(-6px); }
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.animate-cart-bounce {
-  animation: cartBounce 6s infinite ease-in-out;
+.editorial-line {
+  height: 1px;
+  background-color: #000;
 }
+
+@layer utilities {
+  .ease-premium {
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  
+  .underline-slide {
+    position: relative;
+  }
+  .underline-slide::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .underline-slide:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  .btn-premium {
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .btn-premium:hover {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+  }
+  .btn-premium:active {
+    transform: scale(0.98);
+  }
+}
+

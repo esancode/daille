@@ -1,137 +1,89 @@
-import Link from "next/link";
-import { getProdutos, getCategorias } from "@/services/products";
-import { ProductCard } from "@/components/product/ProductCard";
+import Image from 'next/image';
+import Link from 'next/link';
+import { getProdutos } from '@/services/products';
+import { SortSelect } from './SortSelect';
+import { FadeIn } from '@/components/ui/FadeIn';
 
-interface PageProps {
-  searchParams: Promise<{
-    q?: string;
-    categoria?: string;
-  }>;
-}
-
-export default async function CatalogoPage({ searchParams }: PageProps) {
-  const params = await searchParams;
-  const query = params.q || "";
-  const categoriaSelecionada = params.categoria || "";
-
-  const [todosProdutos, categorias] = await Promise.all([
-    getProdutos(),
-    getCategorias(),
-  ]);
-
-  let produtosFiltrados = todosProdutos.filter((prod) => prod.status === "disponivel");
-
-  if (categoriaSelecionada) {
-    produtosFiltrados = produtosFiltrados.filter(
-      (prod) => prod.categoria.toLowerCase() === categoriaSelecionada.toLowerCase()
-    );
+export default async function Catalogo({ searchParams }: { searchParams: Promise<{ category?: string, sort?: string }> }) {
+  const resolvedParams = await searchParams;
+  let produtos = await getProdutos();
+  
+  if (resolvedParams.category) {
+    const cat = resolvedParams.category.toLowerCase();
+    produtos = produtos.filter(p => p.categoria.toLowerCase() === cat);
   }
 
-  if (query) {
-    const qLower = query.toLowerCase();
-    produtosFiltrados = produtosFiltrados.filter(
-      (prod) =>
-        prod.nome.toLowerCase().includes(qLower) ||
-        prod.codigo.toLowerCase().includes(qLower) ||
-        prod.descricao.toLowerCase().includes(qLower)
-    );
+  if (resolvedParams.sort === 'price_asc') {
+    produtos = produtos.sort((a, b) => a.preco - b.preco);
+  } else if (resolvedParams.sort === 'price_desc') {
+    produtos = produtos.sort((a, b) => b.preco - a.preco);
   }
-
-  const getLinkHref = (newCategory?: string) => {
-    const category = newCategory !== undefined ? newCategory : categoriaSelecionada;
-    
-    const paramsList: string[] = [];
-    if (category) paramsList.push(`categoria=${encodeURIComponent(category)}`);
-    if (query) paramsList.push(`q=${encodeURIComponent(query)}`);
-    
-    return paramsList.length > 0 ? `/catalogo?${paramsList.join("&")}` : "/catalogo";
-  };
 
   return (
-    <div className="w-full bg-white py-12 md:py-20 min-h-screen">
-      <div className="mx-auto max-w-7xl px-6 md:px-10 flex flex-col gap-10">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2 text-[11px] font-sans font-semibold uppercase tracking-widest text-zinc-400">
-            <Link href="/" className="hover:text-zinc-800 transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-zinc-800">Catálogo</span>
-          </div>
-
-          <h1 className="font-playfair text-[32px] md:text-[40px] font-light uppercase tracking-wider text-zinc-950">
-            {query
-              ? `Resultado para "${query}"`
-              : categoriaSelecionada
-              ? categoriaSelecionada
-              : "Todas as Joias"}
+    <div className="bg-surface min-h-screen">
+      {/* Page Title & Filter Bar */}
+      <section className="border-b border-tertiary">
+        <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-unit-lg">
+          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-unit-lg">
+            TODAS AS JOIAS
           </h1>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          <Link
-            href={getLinkHref("")}
-            className={`px-5 py-2 rounded-[4px] font-sans text-[11px] font-semibold uppercase tracking-widest border transition-all ${
-              !categoriaSelecionada
-                ? "bg-zinc-950 text-white border-transparent"
-                : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-400 hover:text-zinc-900"
-            }`}
-          >
-            Todos
-          </Link>
-          {categorias.map((cat) => (
-            <Link
-              key={cat.id}
-              href={getLinkHref(cat.nome)}
-              className={`px-5 py-2 rounded-[4px] font-sans text-[11px] font-semibold uppercase tracking-widest border transition-all ${
-                categoriaSelecionada.toLowerCase() === cat.nome.toLowerCase()
-                  ? "bg-zinc-950 text-white border-transparent"
-                  : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-400 hover:text-zinc-900"
-              }`}
-            >
-              {cat.nome}
-            </Link>
-          ))}
-        </div>
-
-        {produtosFiltrados.length === 0 ? (
-          <div className="w-full py-20 flex flex-col items-center justify-center text-center gap-4">
-            <svg
-              className="w-16 h-16 text-zinc-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <div className="flex flex-col gap-1">
-              <p className="font-playfair text-[18px] font-medium uppercase tracking-wider text-zinc-800">
-                Nenhuma joia encontrada
-              </p>
-              <p className="font-sans text-[13px] text-zinc-400">
-                Tente buscar por outro termo ou selecione uma categoria diferente.
-              </p>
+          <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center border-y border-tertiary py-unit-sm gap-unit-md">
+            <div className="flex gap-unit-md overflow-x-auto py-2">
+              <Link href="/catalogo" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary hover:opacity-70 cursor-pointer">FILTRAR POR</Link>
+              <Link href="/catalogo?category=aneis" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">ANÉIS</Link>
+              <Link href="/catalogo?category=colares" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">COLARES</Link>
+              <Link href="/catalogo?category=brincos" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">BRINCOS</Link>
+              <Link href="/catalogo?category=pulseiras" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">PULSEIRAS</Link>
             </div>
-            <Link
-              href="/catalogo"
-              className="mt-2 font-sans text-[12px] font-semibold uppercase tracking-widest bg-zinc-950 text-white px-8 py-3 rounded-[4px] hover:bg-zinc-900 transition-colors"
-            >
-              Limpar Filtros
-            </Link>
+            <div className="flex items-center gap-unit-sm border-t border-tertiary md:border-t-0 pt-unit-sm md:pt-0 text-primary">
+              <SortSelect />
+            </div>
           </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
-            {produtosFiltrados.map((produto) => (
-              <ProductCard key={produto.id} produto={produto} />
-            ))}
+        </div>
+      </section>
+
+      {/* Product Grid */}
+      <section className="py-section-gap">
+        <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-section-gap">
+          {produtos.map((item, index) => (
+            <FadeIn key={item.id} delay={index * 50} className="flex flex-col group">
+              <Link href={`/produto/${item.id}`} className="relative aspect-square overflow-hidden mb-unit-md bg-surface-container">
+                <img 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105 filter grayscale" 
+                  src={item.imagens && item.imagens.length > 0 ? item.imagens[0].url : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop"} 
+                  alt={item.nome} 
+                />
+              </Link>
+              <div className="flex flex-col gap-unit-xs">
+                <Link href={`/produto/${item.id}`} className="font-label-caps text-label-caps uppercase text-primary hover:underline">
+                  {item.nome}
+                </Link>
+                <p className="font-body-sm text-body-sm font-bold text-primary">R$ {item.preco.toFixed(2).replace('.', ',')}</p>
+                <button className="mt-unit-sm btn-premium bg-primary text-on-primary py-unit-sm font-button-text text-button-text uppercase w-full border border-primary">
+                  COMPRAR
+                </button>
+              </div>
+            </FadeIn>
+          ))}
           </div>
-        )}
-      </div>
+        </div>
+      </section>
+
+      {/* Pagination */}
+      <section className="pb-section-gap">
+        <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-center items-center gap-unit-sm">
+          <button className="w-10 h-10 border border-tertiary flex items-center justify-center hover:bg-tertiary hover:text-on-tertiary transition-colors disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-primary">
+            <span className="material-symbols-outlined text-[16px]">chevron_left</span>
+          </button>
+          <button className="w-10 h-10 border border-tertiary bg-tertiary text-on-tertiary flex items-center justify-center font-label-caps text-label-caps hover:bg-tertiary/90 transition-colors">1</button>
+          <button className="w-10 h-10 border border-tertiary flex items-center justify-center font-label-caps text-label-caps hover:bg-tertiary hover:text-on-tertiary transition-colors">2</button>
+          <button className="w-10 h-10 border border-tertiary flex items-center justify-center font-label-caps text-label-caps hover:bg-tertiary hover:text-on-tertiary transition-colors">3</button>
+          <button className="w-10 h-10 border border-tertiary flex items-center justify-center hover:bg-tertiary hover:text-on-tertiary transition-colors">
+            <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
