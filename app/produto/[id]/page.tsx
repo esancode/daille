@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getProdutoById, getProdutosDestaque } from '@/services/products';
 import { ProductImageGallery } from './ProductImageGallery';
+import { ProductActions } from '@/components/product/ProductActions';
 import { FadeIn } from '@/components/ui/FadeIn';
 
 export default async function Produto({ params }: { params: Promise<{ id: string }> }) {
@@ -26,7 +27,7 @@ export default async function Produto({ params }: { params: Promise<{ id: string
   const imagemPrincipal = produto.imagens && produto.imagens.length > 0 ? produto.imagens[0].url : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop";
 
   return (
-    <div className="bg-surface min-h-screen">
+    <div className="bg-surface min-h-screen overflow-x-hidden">
       <main className="w-full px-margin-mobile md:px-margin-desktop py-unit-lg">
         <div className="flex flex-col md:grid md:grid-cols-2 gap-unit-lg items-start">
           {/* Hero Image */}
@@ -48,11 +49,7 @@ export default async function Produto({ params }: { params: Promise<{ id: string
               {produto.descricao}
             </p>
 
-            <div className="pt-unit-xs w-full max-w-xl">
-              <button className="w-full px-12 py-6 btn-premium bg-primary text-on-primary font-button-text text-button-text uppercase tracking-widest border-2 border-primary mb-unit-xs">
-                ADICIONAR NA SACOLA
-              </button>
-            </div>
+            <ProductActions produto={produto} />
           </FadeIn>
         </div>
       </main>

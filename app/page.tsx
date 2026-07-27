@@ -16,12 +16,13 @@ export default async function Home() {
             className="w-full h-full bg-cover bg-center grayscale contrast-125" 
             style={{ backgroundImage: "url('/hero.png')" }}
           ></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 pointer-events-none"></div>
         </div>
         <FadeIn delay={200} className="relative z-10 w-full md:w-1/2 flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop py-section-gap bg-transparent">
-          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-unit-lg leading-none">
+          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase mb-unit-lg leading-none text-transparent bg-clip-text bg-gradient-to-b from-zinc-200 via-zinc-400 to-zinc-300 drop-shadow-lg">
             PRATA 925<br/>CERTIFICADA
           </h1>
-          <Link href="/catalogo" className="btn-premium bg-primary text-on-primary font-button-text text-button-text uppercase px-unit-lg py-unit-md border border-primary">
+          <Link href="/catalogo" className="btn-premium font-button-text text-button-text uppercase px-unit-lg py-unit-md border bg-surface text-primary border-surface hover:opacity-80 transition-opacity">
             SABER MAIS
           </Link>
         </FadeIn>
