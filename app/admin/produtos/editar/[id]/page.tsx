@@ -78,7 +78,7 @@ export default function EditarProdutoPage({ params }: PageProps) {
     });
   };
 
-  const handleRemoveFotoAtual = (imagem: Imagem) => {
+  const handleRemoveFotoAtual = (imagem: ImagemProduto) => {
     setImagensAtuais((prev) => prev.filter((img) => img.id !== imagem.id));
     setImagensRemovidasUrls((prev) => [...prev, imagem.url]);
   };
@@ -239,7 +239,7 @@ export default function EditarProdutoPage({ params }: PageProps) {
               </label>
               <select
                 value={status}
-                onChange={(e) => setStatus(e.target.value)}
+                onChange={(e) => setStatus(e.target.value as "disponivel" | "indisponivel" | "vendido")}
                 className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white text-[13px] rounded-[4px] focus:outline-none focus:border-zinc-500"
               >
                 <option value="disponivel">Disponível</option>
