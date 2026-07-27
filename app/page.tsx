@@ -17,7 +17,7 @@ export default async function Home() {
             style={{ backgroundImage: "url('/hero.png')" }}
           ></div>
         </div>
-        <FadeIn delay={200} className="relative z-10 w-full md:w-1/2 flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop py-section-gap bg-surface/10 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+        <FadeIn delay={200} className="relative z-10 w-full md:w-1/2 flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop py-section-gap bg-transparent">
           <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-unit-lg leading-none">
             PRATA 925<br/>CERTIFICADA
           </h1>
@@ -32,7 +32,7 @@ export default async function Home() {
         <FadeIn>
           <div className="flex justify-between items-end mb-unit-lg border-b border-tertiary pb-unit-sm">
             <h2 className="font-headline-md text-headline-md uppercase">MAIS DESEJADOS</h2>
-            <Link href="/catalogo" className="font-label-caps text-label-caps border-b border-tertiary pb-1 hover:opacity-60 transition-opacity">VER TUDO</Link>
+            <Link href="/catalogo" className="font-label-caps text-label-caps hover:opacity-60 transition-opacity">VER TUDO</Link>
           </div>
         </FadeIn>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">

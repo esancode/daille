@@ -27,15 +27,14 @@ export default async function Catalogo({ searchParams }: { searchParams: Promise
           <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-unit-lg">
             TODAS AS JOIAS
           </h1>
-          <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center border-y border-tertiary py-unit-sm gap-unit-md">
+          <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center py-unit-sm gap-unit-md">
             <div className="flex gap-unit-md overflow-x-auto py-2">
-              <Link href="/catalogo" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary hover:opacity-70 cursor-pointer">FILTRAR POR</Link>
               <Link href="/catalogo?category=aneis" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">ANÉIS</Link>
               <Link href="/catalogo?category=colares" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">COLARES</Link>
               <Link href="/catalogo?category=brincos" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">BRINCOS</Link>
               <Link href="/catalogo?category=pulseiras" className="font-label-caps text-label-caps uppercase whitespace-nowrap text-primary opacity-40 hover:opacity-100 cursor-pointer">PULSEIRAS</Link>
             </div>
-            <div className="flex items-center gap-unit-sm border-t border-tertiary md:border-t-0 pt-unit-sm md:pt-0 text-primary">
+            <div className="flex items-center gap-unit-sm pt-unit-sm md:pt-0 text-primary">
               <SortSelect />
             </div>
           </div>
