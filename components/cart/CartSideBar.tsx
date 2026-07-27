@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import { useCart } from "@/hooks/useCart";
 
 export function CartSidebar() {

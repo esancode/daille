@@ -17,7 +17,7 @@ export default function NovoProduto() {
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [status, setStatus] = useState("disponivel");
+  const [status, setStatus] = useState<"disponivel" | "indisponivel" | "vendido">("disponivel");
   const [destaque, setDestaque] = useState(false);
   const [fotos, setFotos] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);

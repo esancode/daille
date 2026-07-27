@@ -4,7 +4,7 @@ import React, { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getCategorias, getProdutoById, updateProduto } from "@/services/products";
-import { Categoria, Produto } from "@/types";
+import { Categoria, Produto, ImagemProduto } from "@/types";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -22,10 +22,10 @@ export default function EditarProdutoPage({ params }: PageProps) {
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [status, setStatus] = useState("disponivel");
+  const [status, setStatus] = useState<"disponivel" | "indisponivel" | "vendido">("disponivel");
   const [destaque, setDestaque] = useState(false);
 
-  const [imagensAtuais, setImagensAtuais] = useState<Imagem[]>([]);
+  const [imagensAtuais, setImagensAtuais] = useState<ImagemProduto[]>([]);
   const [imagensRemovidasUrls, setImagensRemovidasUrls] = useState<string[]>([]);
   const [novasFotos, setNovasFotos] = useState<File[]>([]);
   const [novasPreviews, setNovasPreviews] = useState<string[]>([]);
@@ -41,9 +41,12 @@ export default function EditarProdutoPage({ params }: PageProps) {
           setDescricao(prod.descricao);
           setPreco(prod.preco.toString().replace(".", ","));
           setCategoria(prod.categoria);
-          setStatus(prod.status);
+          setStatus(prod.status as "disponivel" | "indisponivel" | "vendido");
           setDestaque(prod.destaque);
-          setImagensAtuais(prod.imagens || []);
+          
+          if (prod.imagens) {
+            setImagensAtuais(prod.imagens as ImagemProduto[]);
+          }
         } else {
           alert("Produto não encontrado.");
           router.push("/admin/produtos");
