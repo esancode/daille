@@ -19,6 +19,7 @@ export default function NovoProduto() {
   const [categoria, setCategoria] = useState("");
   const [status, setStatus] = useState<"disponivel" | "indisponivel" | "vendido">("disponivel");
   const [destaque, setDestaque] = useState(false);
+  const [tag, setTag] = useState("");
   const [fotos, setFotos] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
 
@@ -77,6 +78,7 @@ export default function NovoProduto() {
         categoria,
         status,
         destaque,
+        tag: tag || undefined,
       };
 
       const result = await createProduto(prodData, fotos);
@@ -207,6 +209,32 @@ export default function NovoProduto() {
               >
                 <option value="disponivel">Disponível</option>
                 <option value="vendido">Vendido</option>
+              </select>
+            </div>
+            
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
+                Tag do Produto
+              </label>
+              <select
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
+                className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white text-[13px] rounded-[4px] focus:outline-none focus:border-zinc-500"
+              >
+                <option value="">(Nenhuma tag)</option>
+                <option value="LANCAMENTO">LANÇAMENTO (Champagne)</option>
+                <option value="DESTAQUE">DESTAQUE (Azul-marinho)</option>
+                <option value="MAIS_VENDIDO">MAIS VENDIDO (Preto)</option>
+                <option value="EXCLUSIVO">EXCLUSIVO (Champagne)</option>
+                <option value="COLECAO_NOVA">COLEÇÃO NOVA (Branco/Prata)</option>
+                <option value="PRESENTE">IDEIA DE PRESENTE (Azul-marinho)</option>
+                <option value="FAVORITO">FAVORITO (Branco)</option>
+                <option value="PRATA_925">PRATA 925 (Branco/Prata)</option>
+                <option value="ULTIMAS">ÚLTIMAS UNIDADES (Vermelho)</option>
+                <option value="OFERTA">OFERTA (Preto)</option>
+                <option value="DESCONTO">DESCONTO (Champagne)</option>
+                <option value="FRETE_GRATIS">FRETE GRÁTIS (Azul-marinho)</option>
+                <option value="INDISPONIVEL">INDISPONÍVEL (Cinza)</option>
               </select>
             </div>
           </div>

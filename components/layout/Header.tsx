@@ -27,18 +27,18 @@ export function Header() {
         FRETE GRÁTIS PARA COMPRAS ACIMA DE R$299
       </div>
       <header 
-        className={`sticky top-0 z-50 border-b border-tertiary w-full transition-all duration-500 ease-premium ${
-          isScrolled ? 'bg-surface/90 backdrop-blur-md shadow-sm py-3 md:py-4' : 'bg-surface py-unit-md'
+        className={`sticky top-0 z-50 w-full transition-all duration-500 ease-premium ${
+          isScrolled ? 'bg-surface/90 backdrop-blur-md shadow-sm py-2' : 'bg-surface py-3'
         }`}
       >
         <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center w-full">
-          <div className="flex items-center gap-unit-md">
+          <div className="flex items-center gap-unit-md w-1/3">
             <button onClick={() => setIsMenuOpen(true)} className="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">menu</button>
           </div>
-          <Link href="/" className="font-headline-md text-headline-md text-primary tracking-tighter uppercase flex items-center justify-center">
-            <Image src="/logo_nova.png" alt="Velune Pratas" width={180} height={24} className="object-contain h-6 w-auto" priority />
+          <Link href="/" className="font-headline-md text-headline-md text-primary tracking-tighter uppercase flex items-center justify-center w-1/3">
+            <Image src="/logo_nova.png" alt="Velune Pratas" width={180} height={24} className="object-contain h-6 md:h-8 w-auto" priority />
           </Link>
-          <div className="flex items-center gap-unit-md">
+          <div className="flex items-center justify-end gap-unit-md w-1/3">
             <button onClick={() => setIsSearchOpen(true)} className="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">search</button>
             <button onClick={() => setIsCartOpen(true)} className="relative material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">
               shopping_bag
@@ -50,6 +50,15 @@ export function Header() {
             </button>
           </div>
         </div>
+
+        {/* Categorias (Desktop) */}
+        <nav className="hidden md:flex items-center justify-center gap-10 pt-4 text-[13px] font-medium tracking-[0.15em] text-primary w-full max-w-7xl mx-auto">
+          <Link href="/catalogo?category=Aneis" className="hover:text-primary transition-colors py-2 md:py-0">ANÉIS</Link>
+          <Link href="/catalogo?category=Colares" className="hover:text-primary transition-colors py-2 md:py-0">COLARES</Link>
+          <Link href="/catalogo?category=Brincos" className="hover:text-primary transition-colors py-2 md:py-0">BRINCOS</Link>
+          <Link href="/catalogo?category=Pulseiras" className="hover:text-primary transition-colors py-2 md:py-0">PULSEIRAS</Link>
+          <Link href="/catalogo?category=Conjuntos" className="hover:text-primary transition-colors py-2 md:py-0">CONJUNTOS</Link>
+        </nav>
       </header>
 
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

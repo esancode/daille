@@ -20,6 +20,7 @@ export interface Produto {
   status: "disponivel" | "indisponivel" | "vendido";
   destaque: boolean;
   criado_em: string;
+  tag?: string;
   imagens?: ImagemProduto[];
 }
 

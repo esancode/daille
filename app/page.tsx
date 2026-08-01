@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getProdutosDestaque } from '@/services/products';
 import { FadeIn } from '@/components/ui/FadeIn';
+import { ProductTag } from '@/components/product/ProductTag';
 
 export default async function Home() {
   const destaques = await getProdutosDestaque();
@@ -42,8 +43,9 @@ export default async function Home() {
             return (
               <FadeIn key={produto.id} delay={index * 100}>
                 <Link href={`/produto/${produto.id}`} className="group cursor-pointer block">
-                  <div className="aspect-[3/4] overflow-hidden mb-unit-md border border-outline-variant">
-                    <img className="w-full h-full object-cover grayscale transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
+                  <div className="aspect-[3/4] overflow-hidden mb-unit-md border border-outline-variant relative">
+                    {produto.tag && <ProductTag tag={produto.tag} className="absolute top-2 right-2" />}
+                    <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
                   </div>
                   <p className="font-label-caps text-label-caps uppercase text-primary mb-1">{produto.nome}</p>
                   <p className="font-body-sm text-body-sm font-bold mb-unit-sm">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
@@ -69,19 +71,19 @@ export default async function Home() {
         <h2 className="font-headline-md text-headline-md uppercase mb-unit-lg text-center">GALERIA DE ESTILO</h2>
         <div className="grid grid-cols-2 grid-rows-2 gap-unit-md h-[707px] md:h-[1060px]">
           <FadeIn direction="left" delay={100} className="relative group overflow-hidden border border-tertiary">
-            <div className="w-full h-full bg-cover bg-center grayscale transition-transform duration-700 ease-premium group-hover:scale-105" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoYFmG5B7fQUQ2UMx2LLBt9rg0NEN-zhCWvw3yECVysBDKZmqVNEmWP3Z5P9Yqk1OTi8cjMvEnZ9Xbiuu09ESmho5WnzzxQrI1b4_iGJ3GBDBH1pfioayQSvbu03eZLoNDYQJ4TaDD7jNewmKq6F8k4Z0_0ZNBv3AeSoHwDk25HL5lgoNtZ0zaqRdmNwU_kHzq8SXQ5MbSX_uu5bGWgbWhkzp8zxYoYpJhYYqy9N4UfB-YWraca2OrmmVbYOBEf9IjvGR5wkkUR3rN')" }}></div>
+            <div className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-premium group-hover:scale-105" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoYFmG5B7fQUQ2UMx2LLBt9rg0NEN-zhCWvw3yECVysBDKZmqVNEmWP3Z5P9Yqk1OTi8cjMvEnZ9Xbiuu09ESmho5WnzzxQrI1b4_iGJ3GBDBH1pfioayQSvbu03eZLoNDYQJ4TaDD7jNewmKq6F8k4Z0_0ZNBv3AeSoHwDk25HL5lgoNtZ0zaqRdmNwU_kHzq8SXQ5MbSX_uu5bGWgbWhkzp8zxYoYpJhYYqy9N4UfB-YWraca2OrmmVbYOBEf9IjvGR5wkkUR3rN')" }}></div>
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
               <span className="text-on-tertiary font-label-caps tracking-widest underline-slide">COMPRAR LOOK</span>
             </div>
           </FadeIn>
           <FadeIn direction="right" delay={200} className="relative group overflow-hidden border border-tertiary row-span-2">
-            <div className="w-full h-full bg-cover bg-center grayscale transition-transform duration-700 ease-premium group-hover:scale-105" style={{ backgroundImage: "url('/gallery.png')" }}></div>
+            <div className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-premium group-hover:scale-105" style={{ backgroundImage: "url('/gallery.png')" }}></div>
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
               <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER GALERIA</span>
             </div>
           </FadeIn>
           <FadeIn direction="up" delay={150} className="relative group overflow-hidden border border-tertiary">
-            <div className="w-full h-full bg-cover bg-center grayscale transition-transform duration-700 ease-premium group-hover:scale-105" style={{ backgroundImage: "url('/curated.png')" }}></div>
+            <div className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-premium group-hover:scale-105" style={{ backgroundImage: "url('/curated.png')" }}></div>
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
               <span className="text-on-tertiary font-label-caps tracking-widest underline-slide">CURADORIA</span>
             </div> 

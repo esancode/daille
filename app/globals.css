@@ -103,6 +103,11 @@ body {
   min-height: 100dvh;
 }
 
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
@@ -139,6 +144,8 @@ body {
   
   .btn-premium {
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 9999px;
+    cursor: pointer;
   }
   .btn-premium:hover {
     background-color: var(--color-surface);

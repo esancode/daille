@@ -109,9 +109,9 @@ export function CartSidebar() {
                 >
                   <Link href={`/produto/${item.produto.id}`} className="w-24 h-32 bg-surface-container overflow-hidden flex-shrink-0 cursor-pointer">
                     <img
-                      src={image}
+                      src={item.produto.imagens?.[0]?.url || "https://images.unsplash.com/photo-1605100804763-247f67b3557e"}
                       alt={item.produto.nome}
-                      className="w-full h-full object-cover object-center grayscale"
+                      className="w-full h-full object-cover object-center"
                     />
                   </Link>
 

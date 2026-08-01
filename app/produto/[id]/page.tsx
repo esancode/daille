@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { getProdutoById, getProdutosDestaque } from '@/services/products';
 import { ProductImageGallery } from './ProductImageGallery';
 import { ProductActions } from '@/components/product/ProductActions';
+import { ProductAccordion } from '@/components/product/ProductAccordion';
+import { ProductTag } from '@/components/product/ProductTag';
 import { FadeIn } from '@/components/ui/FadeIn';
 
 export default async function Produto({ params }: { params: Promise<{ id: string }> }) {
@@ -28,8 +30,17 @@ export default async function Produto({ params }: { params: Promise<{ id: string
 
   return (
     <div className="bg-surface min-h-screen overflow-x-hidden">
-      <main className="w-full px-margin-mobile md:px-margin-desktop py-unit-lg">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-unit-lg items-start">
+      <main className="w-full px-margin-mobile md:px-margin-desktop pt-12 md:pt-20 pb-24 md:pb-32">
+        {/* Breadcrumbs */}
+        <div className="text-[9px] uppercase tracking-widest text-secondary mb-8 md:mb-12 flex items-center gap-2">
+          <Link href="/" className="hover:text-primary transition-colors">INÍCIO</Link>
+          <span className="text-tertiary">/</span>
+          <Link href="/catalogo" className="hover:text-primary transition-colors">CATÁLOGO</Link>
+          <span className="text-tertiary">/</span>
+          <span className="text-primary truncate max-w-[200px] md:max-w-md">{produto.nome}</span>
+        </div>
+
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-unit-xl items-start">
           {/* Hero Image */}
           <div className="w-full">
             <ProductImageGallery 
@@ -41,15 +52,18 @@ export default async function Produto({ params }: { params: Promise<{ id: string
           {/* Product Info */}
           <FadeIn direction="right" delay={200} className="flex flex-col justify-center h-full space-y-unit-md w-full">
             <div className="space-y-unit-xs">
-              <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase leading-none text-primary">{produto.nome}</h1>
-              <p className="font-headline-md text-headline-md font-bold text-primary">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
+              {produto.tag && (
+                <div className="mb-2">
+                  <ProductTag tag={produto.tag} className="inline-block" />
+                </div>
+              )}
+              <h1 className="text-2xl md:text-3xl uppercase leading-none text-primary font-bold tracking-tight">{produto.nome}</h1>
+              <p className="text-lg md:text-xl font-bold text-primary">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
             </div>
             
-            <p className="font-body-lg text-body-lg text-secondary max-w-xl">
-              {produto.descricao}
-            </p>
-
             <ProductActions produto={produto} />
+
+            <ProductAccordion descricao={produto.descricao} />
           </FadeIn>
         </div>
       </main>
@@ -74,8 +88,9 @@ export default async function Produto({ params }: { params: Promise<{ id: string
             return (
               <FadeIn key={produto.id} delay={index * 100}>
                 <Link href={`/produto/${produto.id}`} className="group cursor-pointer block">
-                  <div className="aspect-[3/4] overflow-hidden mb-unit-md border border-outline-variant">
-                    <img className="w-full h-full object-cover grayscale transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
+                  <div className="aspect-[3/4] overflow-hidden mb-unit-md border border-outline-variant relative">
+                    {produto.tag && <ProductTag tag={produto.tag} className="absolute top-2 right-2" />}
+                    <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
                   </div>
                   <p className="font-label-caps text-label-caps uppercase text-primary mb-1">{produto.nome}</p>
                   <p className="font-body-sm text-body-sm font-bold mb-unit-sm">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
@@ -95,13 +110,13 @@ export default async function Produto({ params }: { params: Promise<{ id: string
         <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
           <div className="space-y-gutter">
             <FadeIn direction="left" delay={100} className="aspect-[16/9] overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover grayscale transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop" alt="Look 1" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop" alt="Look 1" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
             </FadeIn>
             <FadeIn direction="left" delay={200} className="aspect-square overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover grayscale transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop" alt="Look 2" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop" alt="Look 2" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
@@ -109,13 +124,13 @@ export default async function Produto({ params }: { params: Promise<{ id: string
           </div>
           <div className="space-y-gutter">
             <FadeIn direction="right" delay={100} className="aspect-square overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover grayscale transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop" alt="Look 3" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop" alt="Look 3" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
             </FadeIn>
             <FadeIn direction="right" delay={200} className="aspect-[16/9] overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover grayscale transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" alt="Look 4" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" alt="Look 4" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>

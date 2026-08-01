@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getProdutos } from '@/services/products';
 import { SortSelect } from './SortSelect';
 import { FadeIn } from '@/components/ui/FadeIn';
+import { ProductTag } from "@/components/product/ProductTag";
 
 export default async function Catalogo({ searchParams }: { searchParams: Promise<{ category?: string, sort?: string }> }) {
   const resolvedParams = await searchParams;
@@ -48,8 +49,9 @@ export default async function Catalogo({ searchParams }: { searchParams: Promise
           {produtos.map((item, index) => (
             <FadeIn key={item.id} delay={index * 50} className="flex flex-col group">
               <Link href={`/produto/${item.id}`} className="relative aspect-square overflow-hidden mb-unit-md bg-surface-container">
+                {item.tag && <ProductTag tag={item.tag} className="absolute top-2 right-2" />}
                 <img 
-                  className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105 filter grayscale" 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" 
                   src={item.imagens && item.imagens.length > 0 ? item.imagens[0].url : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop"} 
                   alt={item.nome} 
                 />

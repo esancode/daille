@@ -9,7 +9,8 @@ interface ProductActionsProps {
 }
 
 export function ProductActions({ produto }: ProductActionsProps) {
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
+  const inCart = cart.some(item => item.produto.id === produto.id);
 
   const handleBuyOnWhatsApp = () => {
     const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511999999999";
@@ -22,13 +23,13 @@ export function ProductActions({ produto }: ProductActionsProps) {
     <div className="pt-unit-xs w-full max-w-xl flex flex-col gap-unit-xs mb-unit-xs">
       <button 
         onClick={() => addToCart(produto)}
-        className="w-full px-12 py-6 btn-premium bg-primary text-on-primary font-button-text text-button-text uppercase tracking-widest border-2 border-primary"
+        className="w-full px-6 py-4 btn-premium bg-primary text-on-primary text-xs font-bold uppercase tracking-widest border border-primary"
       >
-        ADICIONAR À SACOLA
+        {inCart ? "ADICIONAR À SACOLA (1 Disponível)" : "ADICIONAR À SACOLA"}
       </button>
       <button 
         onClick={handleBuyOnWhatsApp}
-        className="w-full px-12 py-6 btn-premium bg-surface text-primary font-button-text text-button-text uppercase tracking-widest border-2 border-primary"
+        className="w-full px-6 py-4 btn-premium bg-surface text-primary text-xs font-bold uppercase tracking-widest border border-primary"
       >
         COMPRAR PELO WHATSAPP
       </button>

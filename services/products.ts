@@ -152,7 +152,8 @@ export async function createProduto(
           preco: produto.preco,
           categoria: produto.categoria,
           status: produto.status,
-          destaque: produto.destaque
+          destaque: produto.destaque,
+          tag: produto.tag
         }
       ])
       .select()
