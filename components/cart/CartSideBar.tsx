@@ -123,9 +123,10 @@ export function CartSidebar() {
                         </Link>
                         <button
                           onClick={() => removeFromCart(item.produto.id)}
-                          className="material-symbols-outlined text-[18px] text-secondary hover:text-primary transition-colors cursor-pointer"
+                          className="flex items-center justify-center p-2 rounded-full hover:bg-surface-container transition-colors cursor-pointer text-secondary hover:text-primary"
+                          style={{ borderRadius: '50%' }}
                         >
-                          delete
+                          <span className="material-symbols-outlined text-[18px]">delete</span>
                         </button>
                       </div>
                       <p className="font-label-caps text-[10px] text-secondary mt-1">
@@ -134,7 +135,10 @@ export function CartSidebar() {
                     </div>
 
                     <div className="flex justify-between items-end mt-unit-sm">
-                      <div className="flex items-center border border-tertiary">
+                      <div 
+                        className="flex items-center border border-tertiary rounded-full overflow-hidden"
+                        style={{ borderRadius: '9999px' }}
+                      >
                         <button
                           onClick={() =>
                             updateQuantity(item.produto.id, item.quantidade - 1)
@@ -184,7 +188,8 @@ export function CartSidebar() {
             </div>
             <button
               onClick={handleCheckout}
-              className="w-full bg-primary text-on-primary border-2 border-primary py-unit-md font-button-text text-button-text uppercase tracking-widest hover:bg-transparent hover:text-primary transition-all active:scale-[0.98] cursor-pointer"
+              className="w-full bg-primary text-on-primary rounded-full border-2 border-primary py-unit-md font-button-text text-button-text uppercase tracking-widest hover:bg-transparent hover:text-primary transition-all active:scale-[0.98] cursor-pointer"
+              style={{ borderRadius: '9999px' }}
             >
               FINALIZAR COMPRA
             </button>

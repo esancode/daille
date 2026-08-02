@@ -5,6 +5,7 @@ import { getPopularProducts, getTrendingProducts, getFreshProducts } from '@/ser
 import { getProdutosDestaque } from '@/services/products';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { ProductTag } from '@/components/product/ProductTag';
+import { Produto } from '@/types';
 
 interface VitrineParams {
   params: Promise<{ slug: string }>;
@@ -31,7 +32,7 @@ export default async function VitrinePage({ params }: VitrineParams) {
 
   // Renderiza a quantidade ideal de produtos (ex: 24)
   const LIMIT = 24;
-  let produtos = [];
+  let produtos: Produto[] = [];
   let title = "Nossa Seleção";
   let description = "Descubra as joias perfeitas para você.";
 

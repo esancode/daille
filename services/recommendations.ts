@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase';
 import { getProdutos } from './products'; // Assuming there's a cached getProdutos to map details
+import { Produto } from '@/types';
 
 export async function getPopularProducts(limit = 8) {
   const { data, error } = await supabase
@@ -14,7 +15,7 @@ export async function getPopularProducts(limit = 8) {
   const ids = data.map(d => d.produto_id);
   
   // Map back to standard product objects keeping the scored order
-  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean);
+  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
   return recommended;
 }
 
@@ -30,7 +31,7 @@ export async function getTrendingProducts(limit = 8) {
   const allProducts = await getProdutos();
   const ids = data.map(d => d.produto_id);
   
-  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean);
+  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
   return recommended;
 }
 
@@ -46,7 +47,7 @@ export async function getFreshProducts(limit = 8) {
   const allProducts = await getProdutos();
   const ids = data.map(d => d.produto_id);
   
-  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean);
+  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
   return recommended;
 }
 
