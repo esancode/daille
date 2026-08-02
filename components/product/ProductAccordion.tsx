@@ -14,7 +14,7 @@ export function ProductAccordion({ descricao }: ProductAccordionProps) {
   };
 
   return (
-    <div className="w-full max-w-xl mt-8 flex flex-col border-t border-outline-variant">
+    <div className="w-full mt-8 flex flex-col border-t border-outline-variant">
       {/* Detalhes */}
       <div className="border-b border-outline-variant">
         <button 

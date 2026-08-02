@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tertiary: #000000;
+  --color-tertiary: #0A1F5C;
   --color-on-tertiary: #ffffff;
   --color-primary: #000000;
   --color-on-primary: #ffffff;
@@ -147,12 +147,7 @@ img {
     border-radius: 9999px;
     cursor: pointer;
   }
-  .btn-premium:hover {
-    background-color: var(--color-surface);
-    color: var(--color-primary);
-  }
   .btn-premium:active {
     transform: scale(0.98);
   }
 }
-

@@ -1,17 +1,62 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata, ResolvingMetadata } from 'next';
 import { getProdutoById, getProdutosDestaque } from '@/services/products';
 import { ProductImageGallery } from './ProductImageGallery';
 import { ProductActions } from '@/components/product/ProductActions';
 import { ProductAccordion } from '@/components/product/ProductAccordion';
 import { ProductTag } from '@/components/product/ProductTag';
+import { FavoriteButton } from '@/components/product/FavoriteButton';
 import { FadeIn } from '@/components/ui/FadeIn';
+import { ProductViewTracker } from '@/components/product/ProductViewTracker';
+import { ProductRecommendations } from '@/components/product/ProductRecommendations';
+import { ProductShowcase } from '@/components/product/ProductShowcase';
+import { getTrendingProducts, getFreshProducts } from '@/services/recommendations';
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ id: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const resolvedParams = await params;
+  const produto = await getProdutoById(resolvedParams.id);
+  
+  if (!produto) {
+    return {
+      title: 'Produto não encontrado | Daille',
+    };
+  }
+
+  const imagemPrincipal = produto.imagens && produto.imagens.length > 0 ? produto.imagens[0].url : "/hero.png";
+  const title = `${produto.nome} | Daille`;
+  
+  return {
+    title,
+    description: produto.descricao || `Compre ${produto.nome} em Prata 925 na Daille.`,
+    openGraph: {
+      title,
+      description: produto.descricao || `Compre ${produto.nome} em Prata 925 na Daille.`,
+      images: [
+        {
+          url: imagemPrincipal,
+          width: 800,
+          height: 800,
+          alt: produto.nome,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Produto({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const produto = await getProdutoById(resolvedParams.id);
   const destaques = await getProdutosDestaque();
-  const displayProducts = destaques.filter(p => p.id !== resolvedParams.id).slice(0, 4);
+  
+  let trending = await getTrendingProducts(4);
+  let fresh = await getFreshProducts(4);
+  
+  if (trending.length === 0) trending = destaques.slice(0, 4);
+  if (fresh.length === 0) fresh = destaques.slice(4, 8).length > 0 ? destaques.slice(4, 8) : destaques.slice(0, 4);
 
   if (!produto) {
     return (
@@ -31,6 +76,7 @@ export default async function Produto({ params }: { params: Promise<{ id: string
   return (
     <div className="bg-surface min-h-screen overflow-x-hidden">
       <main className="w-full px-margin-mobile md:px-margin-desktop pt-12 md:pt-20 pb-24 md:pb-32">
+        <ProductViewTracker produtoId={produto.id} />
         {/* Breadcrumbs */}
         <div className="text-[9px] uppercase tracking-widest text-secondary mb-8 md:mb-12 flex items-center gap-2">
           <Link href="/" className="hover:text-primary transition-colors">INÍCIO</Link>
@@ -50,7 +96,7 @@ export default async function Produto({ params }: { params: Promise<{ id: string
           </div>
 
           {/* Product Info */}
-          <FadeIn direction="right" delay={200} className="flex flex-col justify-center h-full space-y-unit-md w-full">
+          <FadeIn direction="right" delay={200} className="flex flex-col justify-center h-full space-y-unit-md w-full mt-8 md:mt-0">
             <div className="space-y-unit-xs">
               {produto.tag && (
                 <div className="mb-2">
@@ -58,7 +104,10 @@ export default async function Produto({ params }: { params: Promise<{ id: string
                 </div>
               )}
               <h1 className="text-2xl md:text-3xl uppercase leading-none text-primary font-bold tracking-tight">{produto.nome}</h1>
-              <p className="text-lg md:text-xl font-bold text-primary">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
+              <div className="flex items-center justify-between">
+                <p className="text-lg md:text-xl font-bold text-primary">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
+                <FavoriteButton produto={produto} />
+              </div>
             </div>
             
             <ProductActions produto={produto} />
@@ -66,41 +115,23 @@ export default async function Produto({ params }: { params: Promise<{ id: string
             <ProductAccordion descricao={produto.descricao} />
           </FadeIn>
         </div>
+
+        {/* You May Also Like Section (Recommendations) */}
+        <ProductRecommendations produtoId={produto.id} />
+
       </main>
 
       {/* Middle Banner */}
       <div className="w-full bg-tertiary py-unit-lg px-margin-mobile border-y border-outline-variant overflow-hidden">
         <FadeIn direction="none" className="max-w-4xl mx-auto text-center">
-          <h3 className="font-headline-md text-headline-md text-on-tertiary uppercase leading-tight md:text-[40px]">
+          <h3 className="font-headline-md text-headline-md text-on-tertiary uppercase leading-tight tracking-widest text-[20px] md:text-[28px]">
             PRATA 925 CERTIFICADA. O TOQUE DE LUXO QUE VOCÊ MERECE.
           </h3>
         </FadeIn>
       </div>
 
-      {/* Mais Desejados Grid */}
-      <section className="px-margin-mobile md:px-margin-desktop py-unit-lg">
-        <div className="mb-unit-md">
-          <h3 className="font-headline-md text-headline-md uppercase text-center md:text-left text-primary">MAIS DESEJADOS</h3>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-          {displayProducts.map((produto, index) => {
-            const image = produto.imagens && produto.imagens.length > 0 ? produto.imagens[0].url : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop";
-            return (
-              <FadeIn key={produto.id} delay={index * 100}>
-                <Link href={`/produto/${produto.id}`} className="group cursor-pointer block">
-                  <div className="aspect-[3/4] overflow-hidden mb-unit-md border border-outline-variant relative">
-                    {produto.tag && <ProductTag tag={produto.tag} className="absolute top-2 right-2" />}
-                    <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
-                  </div>
-                  <p className="font-label-caps text-label-caps uppercase text-primary mb-1">{produto.nome}</p>
-                  <p className="font-body-sm text-body-sm font-bold mb-unit-sm">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
-                  <span className="font-label-caps text-label-caps border-b border-transparent group-hover:border-primary transition-all inline-block uppercase text-[10px]">VER DETALHES</span>
-                </Link>
-              </FadeIn>
-            );
-          })}
-        </div>
-      </section>
+      <ProductShowcase title="EM ALTA" produtos={trending} viewAllLink="/vitrine/em-alta" />
+      <ProductShowcase title="NOVIDADES" produtos={fresh} viewAllLink="/vitrine/novidades" />
 
       {/* Galeria de Estilo Section */}
       <section className="px-margin-mobile md:px-margin-desktop py-unit-lg border-t border-tertiary">

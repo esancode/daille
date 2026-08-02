@@ -35,9 +35,9 @@ export function NavigationDrawer({ isOpen, onClose }: NavigationDrawerProps) {
       <div className={`fixed inset-y-0 left-0 z-[110] w-[80vw] max-w-sm bg-surface flex flex-col shadow-2xl transition-transform duration-500 ease-premium transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
-        <div className="p-margin-mobile flex justify-between items-center border-b border-tertiary">
-          <Image src="/logo_nova.png" alt="Velune Pratas" width={140} height={40} className="object-contain" />
-          <button onClick={onClose} className="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">
+        <div className="flex items-center justify-between p-unit-lg border-b border-tertiary gap-4">
+          <Image src="/logo_daille.png" alt="Daille" width={180} height={45} className="object-contain w-full max-w-[55%] h-auto" />
+          <button onClick={onClose} className="material-symbols-outlined text-primary hover:text-secondary transition-colors cursor-pointer text-2xl flex-shrink-0">
             close
           </button>
         </div>
@@ -50,8 +50,6 @@ export function NavigationDrawer({ isOpen, onClose }: NavigationDrawerProps) {
           <Link href="/catalogo" onClick={onClose} className="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors pl-unit-md">COLARES</Link>
           <Link href="/catalogo" onClick={onClose} className="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors pl-unit-md">BRINCOS</Link>
           <Link href="/catalogo" onClick={onClose} className="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors pl-unit-md">PULSEIRAS</Link>
-          <div className="editorial-line my-unit-sm"></div>
-          <Link href="/cliente" onClick={onClose} className="font-headline-md text-headline-md uppercase text-primary hover:text-secondary transition-colors">MINHA CONTA</Link>
         </nav>
         
         <div className="p-margin-mobile border-t border-tertiary flex flex-col gap-unit-md bg-surface-container">

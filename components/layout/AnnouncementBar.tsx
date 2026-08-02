@@ -23,11 +23,11 @@ export function AnnouncementBar() {
   }, []);
 
   return (
-    <div className="w-full bg-[#0A1F5C] overflow-hidden relative h-[32px] md:h-[36px] flex items-center justify-center">
+    <div className="w-full bg-tertiary text-on-tertiary py-unit-sm overflow-hidden relative h-[32px] md:h-[36px] flex items-center justify-center">
       {frases.map((frase, i) => (
         <p
           key={i}
-          className={`text-center font-sans text-[11px] md:text-[12px] font-medium tracking-widest uppercase text-white transition-all duration-500 absolute w-full ${
+          className={`text-center font-label-caps text-[10px] md:text-[11px] font-medium tracking-[0.2em] uppercase transition-all duration-700 absolute w-full px-4 ${
             index === i
               ? "opacity-100 translate-x-0"
               : i === (index - 1 + frases.length) % frases.length
