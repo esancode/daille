@@ -94,16 +94,16 @@ export default async function Catalogo({ searchParams }: { searchParams: Promise
               <span className="text-primary truncate">CATÁLOGO</span>
             )}
           </div>
-          <div className="flex justify-between items-end pb-unit-sm">
-            <div className="flex items-baseline gap-3">
-              <h1 className="font-headline-md text-headline-md uppercase text-[20px] md:text-[28px] tracking-widest text-primary">
+          <div className="flex flex-wrap justify-between items-end gap-4 pb-unit-sm">
+            <div className="flex flex-wrap items-baseline gap-3 min-w-0 flex-1">
+              <h1 className="font-headline-md uppercase text-[clamp(18px,6vw,28px)] leading-tight tracking-widest text-primary break-words">
                 {categoryName}
               </h1>
-              <span className="font-body-sm text-secondary tracking-widest hidden md:inline-block">
+              <span className="font-body-sm text-[12px] md:text-sm text-secondary tracking-widest">
                 ({productCount} {productCount === 1 ? 'PRODUTO' : 'PRODUTOS'})
               </span>
             </div>
-            <div className="flex items-center gap-unit-sm text-primary">
+            <div className="flex items-center gap-unit-sm text-primary flex-shrink-0">
               <CatalogFilters />
             </div>
           </div>

@@ -17,7 +17,7 @@ export async function ProductRecommendations({ produtoId }: { produtoId: string 
   return (
     <section className="mt-24 md:mt-32">
       <div className="flex items-center justify-between mb-8 md:mb-12">
-        <h2 className="font-headline-md text-headline-md md:font-headline-lg md:text-headline-lg uppercase text-primary tracking-wide">
+        <h2 className="font-headline-md text-[clamp(18px,5vw,28px)] leading-tight uppercase text-primary tracking-wide break-words flex-1 pr-4">
           Você também pode gostar
         </h2>
         <Link href="/catalogo" className="font-button-text text-button-text text-secondary hover:text-primary transition-colors uppercase border-b border-secondary hover:border-primary pb-1 hidden md:block">

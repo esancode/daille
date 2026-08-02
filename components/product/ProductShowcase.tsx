@@ -16,10 +16,10 @@ export function ProductShowcase({ title, produtos, viewAllLink }: ProductShowcas
   return (
     <section className="py-8 md:py-12 px-margin-mobile md:px-margin-desktop bg-surface">
       <FadeIn>
-        <div className="flex justify-between items-end mb-6 md:mb-8 border-b border-tertiary pb-2">
-          <h2 className="font-headline-md text-headline-md uppercase">{title}</h2>
+        <div className="flex flex-wrap justify-between items-end mb-6 md:mb-8 border-b border-tertiary pb-2 gap-4">
+          <h2 className="font-headline-md text-[clamp(16px,5vw,24px)] leading-tight uppercase flex-1 min-w-0 break-words">{title}</h2>
           {viewAllLink && (
-            <Link href={viewAllLink} className="font-label-caps text-label-caps hover:opacity-60 transition-opacity">
+            <Link href={viewAllLink} className="font-label-caps text-label-caps hover:opacity-60 transition-opacity flex-shrink-0 mb-1">
               VER TUDO
             </Link>
           )}

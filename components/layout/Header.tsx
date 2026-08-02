@@ -42,27 +42,27 @@ export function Header() {
           isScrolled ? 'bg-surface/90 backdrop-blur-md shadow-sm py-2' : 'bg-surface py-3'
         } ${isHidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
       >
-        <div className="flex items-center justify-between px-margin-mobile md:px-margin-desktop w-full">
-          <div className="w-1/3 flex items-center justify-start">
+        <div className="flex items-center justify-between px-margin-mobile md:px-margin-desktop w-full gap-2 md:gap-4">
+          <div className="flex-1 flex items-center justify-start">
             <button onClick={() => setIsMenuOpen(true)} className="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">menu</button>
           </div>
-          <Link href="/" className="font-headline-md text-headline-md text-primary tracking-tighter uppercase flex items-center justify-center w-1/3 cursor-pointer">
-            <Image src="/logo_daille.png" alt="Daille" width={320} height={40} className="object-contain h-8 md:h-12 w-auto" priority />
+          <Link href="/" className="flex-none flex items-center justify-center cursor-pointer max-w-[120px] md:max-w-[180px]">
+            <Image src="/logo_daille.png" alt="Daille" width={320} height={50} className="object-contain w-full h-auto" priority />
           </Link>
-          <div className="flex items-center justify-end gap-4 text-primary w-1/3">
-            <button onClick={() => setIsSearchOpen(true)} className="hover:opacity-70 transition-opacity flex items-center justify-center p-2 cursor-pointer">
-              <span className="material-symbols-outlined text-[20px]">search</span>
+          <div className="flex-1 flex items-center justify-end gap-2 md:gap-4 text-primary">
+            <button onClick={() => setIsSearchOpen(true)} className="hover:opacity-70 transition-opacity flex items-center justify-center p-1 md:p-2 cursor-pointer">
+              <span className="material-symbols-outlined text-[20px] md:text-[24px]">search</span>
             </button>
-            <Link href="/favoritos" className="hover:opacity-70 transition-opacity flex items-center justify-center p-2 cursor-pointer">
-              <span className="material-symbols-outlined text-[20px]">favorite</span>
+            <Link href="/favoritos" className="hover:opacity-70 transition-opacity flex items-center justify-center p-1 md:p-2 cursor-pointer">
+              <span className="material-symbols-outlined text-[20px] md:text-[24px]">favorite</span>
             </Link>
             <button 
-              className="hover:opacity-70 transition-opacity relative flex items-center justify-center p-2 cursor-pointer"
+              className="hover:opacity-70 transition-opacity relative flex items-center justify-center p-1 md:p-2 cursor-pointer"
               onClick={() => setIsCartOpen(true)}
             >
-              <span className="material-symbols-outlined text-[20px]">shopping_bag</span>
+              <span className="material-symbols-outlined text-[20px] md:text-[24px]">shopping_bag</span>
               {cartCount > 0 && (
-                <span className="absolute top-0 -right-1 w-5 h-5 bg-tertiary text-on-tertiary text-[10px] font-bold rounded-full flex items-center justify-center" style={{ borderRadius: "50%" }}>
+                <span className="absolute top-0 -right-1 w-4 h-4 md:w-5 md:h-5 bg-tertiary text-on-tertiary text-[9px] md:text-[10px] font-bold rounded-full flex items-center justify-center" style={{ borderRadius: "50%" }}>
                   {cartCount}
                 </span>
               )}

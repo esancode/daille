@@ -69,7 +69,7 @@ export default async function VitrinePage({ params }: VitrineParams) {
 
       {/* Header */}
       <FadeIn className="mb-12 md:mb-16 border-b border-tertiary pb-8">
-        <h1 className="font-headline-lg text-headline-lg md:text-[40px] uppercase text-primary mb-4">{title}</h1>
+        <h1 className="font-headline-lg text-[clamp(28px,8vw,40px)] leading-tight uppercase text-primary mb-4 break-words">{title}</h1>
         <p className="font-body-lg text-body-lg text-secondary max-w-2xl">{description}</p>
       </FadeIn>
 
