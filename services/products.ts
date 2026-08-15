@@ -207,6 +207,19 @@ export async function createProduto(
       }
     }
 
+    const { error: scoreError } = await supabase
+      .from("score_produtos")
+      .insert([
+        {
+          produto_id: novoProd.id,
+          popularity_score: 0,
+          trending_score: 0,
+          freshness_score: Date.now() / 1000,
+        }
+      ]);
+      
+    if (scoreError) console.error("Erro ao inicializar score:", scoreError);
+
     return {
       ...novoProd,
       imagens: imagensInseridas

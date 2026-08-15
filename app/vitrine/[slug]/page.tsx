@@ -1,5 +1,7 @@
 import React from 'react';
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getPopularProducts, getTrendingProducts, getFreshProducts } from '@/services/recommendations';
