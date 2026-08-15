@@ -90,7 +90,7 @@ export default async function VitrinePage({ params }: VitrineParams) {
                   {produto.tag && <ProductTag tag={produto.tag} className="absolute top-2 right-2" />}
                   <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
                 </div>
-                <p className="font-label-caps text-label-caps uppercase text-primary mb-1">{produto.nome}</p>
+                <p className="font-label-caps text-label-caps uppercase text-primary mb-1 line-clamp-2" title={produto.nome}>{produto.nome}</p>
                 <p className="font-body-sm text-body-sm font-bold mb-unit-sm">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
                 <span className="font-label-caps text-label-caps border-b border-transparent group-hover:border-primary transition-all inline-block uppercase text-[10px]">VER DETALHES</span>
               </Link>
