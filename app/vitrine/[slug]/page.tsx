@@ -1,4 +1,5 @@
 import React from 'react';
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getPopularProducts, getTrendingProducts, getFreshProducts } from '@/services/recommendations';

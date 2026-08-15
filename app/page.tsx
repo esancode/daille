@@ -1,4 +1,5 @@
 import Image from 'next/image';
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { getProdutosDestaque } from '@/services/products';
 import { getPopularProducts, getTrendingProducts, getFreshProducts } from '@/services/recommendations';

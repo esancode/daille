@@ -1,4 +1,5 @@
 import Image from 'next/image';
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { Metadata, ResolvingMetadata } from 'next';
 import { getProdutoById, getProdutosDestaque } from '@/services/products';

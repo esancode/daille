@@ -1,4 +1,5 @@
 import Image from 'next/image';
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { getProdutos } from '@/services/products';
 import { CatalogFilters } from '@/components/catalog/CatalogFilters';
