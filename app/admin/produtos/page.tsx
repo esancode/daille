@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { getTodosProdutosAdmin, marcarComoVendido, deleteProduto } from "@/services/products";
 import { Produto } from "@/types";
 
 export default function AdminProdutosList() {
+  const router = useRouter();
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [loading, setLoading] = useState(true);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
@@ -24,6 +26,7 @@ export default function AdminProdutosList() {
   const handleMarcarVendido = async (id: string) => {
     const success = await marcarComoVendido(id);
     if (success) {
+      router.refresh();
       carregarProdutos();
     } else {
       alert("Erro ao marcar produto como vendido.");
@@ -34,6 +37,7 @@ export default function AdminProdutosList() {
     const success = await deleteProduto(id);
     if (success) {
       setConfirmDeleteId(null);
+      router.refresh();
       carregarProdutos();
     } else {
       alert("Erro ao excluir produto.");

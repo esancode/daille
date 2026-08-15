@@ -1,4 +1,5 @@
 import { getTodosProdutosAdmin } from '@/services/products';
+export const dynamic = 'force-dynamic';
 
 export default async function Admin() {
   const produtos = await getTodosProdutosAdmin();

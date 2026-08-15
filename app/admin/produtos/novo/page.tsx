@@ -84,6 +84,7 @@ export default function NovoProduto() {
       const result = await createProduto(prodData, fotos);
 
       if (result) {
+        router.refresh();
         router.push("/admin/produtos");
       } else {
         alert("Ocorreu um erro ao salvar o produto. Verifique sua conexão ou tente novamente.");
