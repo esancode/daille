@@ -23,11 +23,10 @@ const SLIDES: Slide[] = [
   {
     id: 1,
     bg: "bg-[#0F0F0F]",
-    imageSrc: "/banners/modelo_v2.png",
-    imageMobileSrc: "/banners/modelo_v2_mobile.png",
-    imageAlt: "Velune Pratas Modelo",
-    imageClass: "object-contain object-bottom origin-bottom scale-200",
-    imageContainerClass: "absolute bottom-0 md:left-6 right-0 md:right-auto w-full md:w-[48%] h-full flex items-end justify-end md:justify-start pointer-events-none z-0",
+    imageSrc: "/hero_real.jpeg",
+    imageAlt: "Velune Pratas Nova Coleção",
+    imageClass: "object-cover object-center md:rounded-sm shadow-2xl",
+    imageContainerClass: "absolute top-1/2 -translate-y-1/2 md:left-6 right-0 md:right-auto w-full md:w-[45%] h-[85%] md:h-[85%] flex items-center justify-center pointer-events-none z-0",
     title: (
       <>
         A Elegância <br />

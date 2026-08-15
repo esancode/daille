@@ -47,13 +47,13 @@ export function Header() {
             <button onClick={() => setIsMenuOpen(true)} className="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">menu</button>
           </div>
           <Link href="/" className="flex-none flex items-center justify-center cursor-pointer max-w-[120px] md:max-w-[180px]">
-            <Image src="/logo_daille.png" alt="Daille" width={320} height={50} className="object-contain w-full h-auto" priority />
+            <Image src="/logo_nova_branca.png" alt="Daille" width={320} height={50} className="object-contain w-full h-auto" style={{ width: 'auto', height: 'auto' }} priority />
           </Link>
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-4 text-primary">
-            <button onClick={() => setIsSearchOpen(true)} className="hover:opacity-70 transition-opacity flex items-center justify-center p-1 md:p-2 cursor-pointer">
+            <button onClick={() => setIsSearchOpen(true)} className="hover:opacity-70 transition-opacity hidden md:flex items-center justify-center p-1 md:p-2 cursor-pointer">
               <span className="material-symbols-outlined text-[20px] md:text-[24px]">search</span>
             </button>
-            <Link href="/favoritos" className="hover:opacity-70 transition-opacity flex items-center justify-center p-1 md:p-2 cursor-pointer">
+            <Link href="/favoritos" className="hover:opacity-70 transition-opacity hidden md:flex items-center justify-center p-1 md:p-2 cursor-pointer">
               <span className="material-symbols-outlined text-[20px] md:text-[24px]">favorite</span>
             </Link>
             <button 
@@ -72,16 +72,16 @@ export function Header() {
 
         {/* Categorias (Desktop) */}
         <nav className="hidden md:flex items-center justify-center gap-10 pt-4 text-[13px] font-medium tracking-[0.15em] text-primary w-full px-margin-mobile md:px-margin-desktop">
-          <Link href="/catalogo?category=Aneis" className="hover:text-primary transition-colors py-2 md:py-0">ANÉIS</Link>
-          <Link href="/catalogo?category=Colares" className="hover:text-primary transition-colors py-2 md:py-0">COLARES</Link>
-          <Link href="/catalogo?category=Brincos" className="hover:text-primary transition-colors py-2 md:py-0">BRINCOS</Link>
-          <Link href="/catalogo?category=Pulseiras" className="hover:text-primary transition-colors py-2 md:py-0">PULSEIRAS</Link>
-          <Link href="/catalogo?category=Conjuntos" className="hover:text-primary transition-colors py-2 md:py-0">CONJUNTOS</Link>
+          <Link href="/catalogo?category=Aneis" className="relative hover:text-tertiary transition-colors py-2 md:py-0 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all after:duration-300 hover:after:w-full">ANÉIS</Link>
+          <Link href="/catalogo?category=Colares" className="relative hover:text-tertiary transition-colors py-2 md:py-0 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all after:duration-300 hover:after:w-full">COLARES</Link>
+          <Link href="/catalogo?category=Brincos" className="relative hover:text-tertiary transition-colors py-2 md:py-0 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all after:duration-300 hover:after:w-full">BRINCOS</Link>
+          <Link href="/catalogo?category=Pulseiras" className="relative hover:text-tertiary transition-colors py-2 md:py-0 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all after:duration-300 hover:after:w-full">PULSEIRAS</Link>
+          <Link href="/catalogo?category=Conjuntos" className="relative hover:text-tertiary transition-colors py-2 md:py-0 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-tertiary after:transition-all after:duration-300 hover:after:w-full">CONJUNTOS</Link>
         </nav>
       </header>
 
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <NavigationDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <NavigationDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onSearchClick={() => setIsSearchOpen(true)} />
     </>
   );
 }
