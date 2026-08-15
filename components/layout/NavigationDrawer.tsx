@@ -37,7 +37,7 @@ export function NavigationDrawer({ isOpen, onClose, onSearchClick }: NavigationD
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex items-center justify-between p-unit-lg border-b border-tertiary gap-4">
-          <Image src="/logo_nova_branca.png" alt="Daille" width={180} height={45} className="object-contain w-full max-w-[55%] h-auto" style={{ width: 'auto', height: 'auto' }} />
+          <Image src="/logo_daille_transparent.png" alt="Daille" width={180} height={45} className="object-contain w-full max-w-[55%] h-auto" style={{ width: 'auto', height: 'auto' }} />
           <button onClick={onClose} className="material-symbols-outlined text-primary hover:text-secondary transition-colors cursor-pointer text-2xl flex-shrink-0">
             close
           </button>

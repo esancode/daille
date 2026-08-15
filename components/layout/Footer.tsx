@@ -9,8 +9,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
           {/* Brand & Mission */}
           <div className="flex flex-col items-start gap-6">
-            <Link href="/" className="flex items-center justify-start invert cursor-pointer hover:opacity-80 transition-opacity">
-              <Image src="/logo_nova_branca.png" alt="Daille" width={180} height={50} className="object-contain" style={{ width: 'auto', height: 'auto' }} priority />
+            <Link href="/" className="flex items-center justify-start cursor-pointer hover:opacity-80 transition-opacity">
+              <Image src="/logo_footer.png" alt="Daille" width={180} height={50} className="object-contain" style={{ width: 'auto', height: 'auto' }} priority />
             </Link>
             <p className="font-body-sm text-[13px] opacity-80 leading-relaxed max-w-xs">
               A elegância da Prata 925 na sua pele. Peças exclusivas e atemporais, pensadas para o seu brilho diário.

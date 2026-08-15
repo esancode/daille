@@ -47,7 +47,7 @@ export function Header() {
             <button onClick={() => setIsMenuOpen(true)} className="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">menu</button>
           </div>
           <Link href="/" className="flex-none flex items-center justify-center cursor-pointer max-w-[120px] md:max-w-[180px]">
-            <Image src="/logo_nova_branca.png" alt="Daille" width={320} height={50} className="object-contain w-full h-auto" style={{ width: 'auto', height: 'auto' }} priority />
+            <Image src="/logo_daille_transparent.png" alt="Daille" width={320} height={50} className="object-contain w-full h-auto" style={{ width: 'auto', height: 'auto' }} priority />
           </Link>
           <div className="flex-1 flex items-center justify-end gap-2 md:gap-4 text-primary">
             <button onClick={() => setIsSearchOpen(true)} className="hover:opacity-70 transition-opacity hidden md:flex items-center justify-center p-1 md:p-2 cursor-pointer">

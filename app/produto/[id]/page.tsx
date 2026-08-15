@@ -141,13 +141,13 @@ export default async function Produto({ params }: { params: Promise<{ id: string
         <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
           <div className="space-y-gutter">
             <FadeIn direction="left" delay={100} className="aspect-[16/9] overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop" alt="Look 1" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria1.jpeg" alt="Look 1" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
             </FadeIn>
             <FadeIn direction="left" delay={200} className="aspect-square overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=800&auto=format&fit=crop" alt="Look 2" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria2.jpeg" alt="Look 2" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
@@ -155,13 +155,13 @@ export default async function Produto({ params }: { params: Promise<{ id: string
           </div>
           <div className="space-y-gutter">
             <FadeIn direction="right" delay={100} className="aspect-square overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=800&auto=format&fit=crop" alt="Look 3" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria3.jpeg" alt="Look 3" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
             </FadeIn>
             <FadeIn direction="right" delay={200} className="aspect-[16/9] overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" alt="Look 4" />
+              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria4.jpeg" alt="Look 4" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                 <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
               </div>
