@@ -9,13 +9,20 @@ export async function getPopularProducts(limit = 8) {
     .order('popularity_score', { ascending: false })
     .limit(limit);
     
-  if (error || !data) return [];
-  
   const allProducts = await getProdutos();
-  const ids = data.map(d => d.produto_id);
+  let recommended: Produto[] = [];
+
+  if (!error && data) {
+    const ids = data.map(d => d.produto_id);
+    recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
+  }
   
-  // Map back to standard product objects keeping the scored order
-  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
+  // Fallback: Se o banco tem poucos produtos ou as pontuações não existirem, preencha com produtos normais
+  if (recommended.length < limit) {
+    const extra = allProducts.filter(p => !recommended.some(r => r.id === p.id)).slice(0, limit - recommended.length);
+    recommended = [...recommended, ...extra];
+  }
+
   return recommended;
 }
 
@@ -26,12 +33,19 @@ export async function getTrendingProducts(limit = 8) {
     .order('trending_score', { ascending: false })
     .limit(limit);
     
-  if (error || !data) return [];
-  
   const allProducts = await getProdutos();
-  const ids = data.map(d => d.produto_id);
+  let recommended: Produto[] = [];
+
+  if (!error && data) {
+    const ids = data.map(d => d.produto_id);
+    recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
+  }
   
-  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
+  if (recommended.length < limit) {
+    const extra = allProducts.filter(p => !recommended.some(r => r.id === p.id)).slice(0, limit - recommended.length);
+    recommended = [...recommended, ...extra];
+  }
+
   return recommended;
 }
 
@@ -42,12 +56,19 @@ export async function getFreshProducts(limit = 8) {
     .order('freshness_score', { ascending: false })
     .limit(limit);
     
-  if (error || !data) return [];
-  
   const allProducts = await getProdutos();
-  const ids = data.map(d => d.produto_id);
+  let recommended: Produto[] = [];
+
+  if (!error && data) {
+    const ids = data.map(d => d.produto_id);
+    recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
+  }
   
-  const recommended = ids.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Produto[];
+  if (recommended.length < limit) {
+    const extra = allProducts.filter(p => !recommended.some(r => r.id === p.id)).slice(0, limit - recommended.length);
+    recommended = [...recommended, ...extra];
+  }
+
   return recommended;
 }
 

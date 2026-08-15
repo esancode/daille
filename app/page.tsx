@@ -9,16 +9,9 @@ import { FadeIn } from '@/components/ui/FadeIn';
 import { ProductShowcase } from '@/components/product/ProductShowcase';
 
 export default async function Home() {
-  const destaques = await getProdutosDestaque(); // Fallback se os novos estiverem vazios
-  
-  let populares = await getPopularProducts(4);
-  let trending = await getTrendingProducts(4);
-  let fresh = await getFreshProducts(4);
-
-  // Fallbacks elegantes se o banco estiver vazio
-  if (populares.length === 0) populares = destaques.slice(0, 4);
-  if (trending.length === 0) trending = destaques.slice(4, 8).length > 0 ? destaques.slice(4, 8) : destaques.slice(0, 4);
-  if (fresh.length === 0) fresh = destaques.slice(0, 4);
+  const populares = await getPopularProducts(4);
+  const trending = await getTrendingProducts(4);
+  const fresh = await getFreshProducts(4);
 
   return (
     <div className="overflow-x-hidden">
