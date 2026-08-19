@@ -38,11 +38,12 @@ export async function updateSession(request: NextRequest) {
   if (
     !user &&
     request.nextUrl.pathname.startsWith('/admin') &&
-    !request.nextUrl.pathname.startsWith('/admin/login')
+    request.nextUrl.pathname !== '/admin' &&
+    !request.nextUrl.pathname.startsWith('/admin/auth/callback')
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
-    url.pathname = '/admin/login'
+    url.pathname = '/admin'
     return NextResponse.redirect(url)
   }
 
