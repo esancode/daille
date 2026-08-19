@@ -3,18 +3,20 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [authMessage, setAuthMessage] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  
+  const supabase = createClient();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -36,13 +38,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     e.preventDefault();
     setAuthLoading(true);
     setAuthError("");
+    setAuthMessage("");
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      // Usa o Magic Link (código no e-mail) para unificar o fluxo num só lugar
+      const { error } = await supabase.auth.signInWithOtp({
         email,
-        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin/auth/callback`,
+        },
       });
       if (error) {
-        setAuthError(error.message);
+        setAuthError("Erro ao tentar enviar o código.");
+      } else {
+        setAuthMessage("Verifique seu e-mail para acessar o painel.");
       }
     } catch {
       setAuthError("Erro desconhecido ao tentar fazer login.");
@@ -80,7 +88,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className="h-16 w-auto object-contain brightness-0 invert"
             />
             <h1 className="font-playfair text-[20px] font-light uppercase tracking-widest text-white mt-4">
-              Painel Admin
+              Acesso Administrativo
             </h1>
           </div>
 
@@ -95,19 +103,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white text-[13px] rounded-[4px] focus:outline-none focus:border-zinc-500"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
-                Senha
-              </label>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white text-[13px] rounded-[4px] focus:outline-none focus:border-zinc-500"
+                placeholder="admin@velune.com"
               />
             </div>
 
@@ -117,12 +113,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </p>
             )}
 
+            {authMessage && (
+              <p className="text-green-500 text-[11px] font-semibold tracking-wider text-center mt-1">
+                {authMessage}
+              </p>
+            )}
+
             <button
               type="submit"
               disabled={authLoading}
               className="w-full py-4.5 bg-white text-zinc-950 text-[11px] font-semibold uppercase tracking-widest rounded-[4px] hover:bg-zinc-200 transition-colors disabled:opacity-50 mt-2 cursor-pointer"
             >
-              {authLoading ? "Acessando..." : "Entrar"}
+              {authLoading ? "Enviando..." : "Enviar código por e-mail"}
             </button>
           </form>
         </div>
