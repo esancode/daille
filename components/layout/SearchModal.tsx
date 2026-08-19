@@ -14,6 +14,8 @@ interface SearchResult {
   id: string;
   nome: string;
   preco: number;
+  preco_prazo?: number;
+  parcelas?: number;
   imagem: string;
 }
 
@@ -113,7 +115,17 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
                 <div className="flex flex-col">
                   <span className="font-label-caps text-[12px] uppercase text-primary group-hover:underline">{produto.nome}</span>
-                  <span className="font-body-sm font-bold text-primary">R$ {produto.preco.toFixed(2).replace('.', ',')}</span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-body-sm font-bold text-primary">
+                      R$ {produto.preco.toFixed(2).replace('.', ',')}
+                      {produto.preco_prazo && produto.parcelas && <span className="text-[10px] font-normal ml-1 lowercase text-secondary">à vista</span>}
+                    </span>
+                    {produto.preco_prazo && produto.parcelas && (
+                      <span className="text-[11px] text-secondary font-medium">
+                        ou {produto.parcelas}x R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </Link>
             ))}

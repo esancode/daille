@@ -16,6 +16,8 @@ export interface Produto {
   nome: string;
   descricao: string;
   preco: number;
+  preco_prazo?: number;
+  parcelas?: number;
   categoria: string;
   status: "disponivel" | "indisponivel" | "vendido";
   destaque: boolean;

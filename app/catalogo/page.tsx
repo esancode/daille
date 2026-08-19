@@ -136,7 +136,17 @@ export default async function Catalogo({ searchParams }: { searchParams: Promise
                   <Link href={`/produto/${item.id}`} className="font-label-caps text-label-caps uppercase text-primary hover:underline line-clamp-1">
                     {item.nome}
                   </Link>
-                  <p className="font-body-sm text-body-sm font-bold text-primary">R$ {item.preco.toFixed(2).replace('.', ',')}</p>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="font-body-sm text-body-sm font-bold text-primary">
+                      R$ {item.preco.toFixed(2).replace('.', ',')}
+                      {item.preco_prazo && item.parcelas && <span className="text-[10px] font-normal ml-1 lowercase text-secondary">à vista</span>}
+                    </p>
+                    {item.preco_prazo && item.parcelas && (
+                      <p className="text-[11px] text-secondary font-medium">
+                        ou {item.parcelas}x R$ {(item.preco_prazo / item.parcelas).toFixed(2).replace('.', ',')}
+                      </p>
+                    )}
+                  </div>
                   <button className="mt-unit-sm btn-premium bg-primary text-on-primary py-unit-sm font-button-text text-button-text uppercase w-full border border-primary">
                     COMPRAR
                   </button>

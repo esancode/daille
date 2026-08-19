@@ -21,6 +21,9 @@ export default function EditarProdutoPage({ params }: PageProps) {
   const [codigo, setCodigo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
+  const [isPrazoEnabled, setIsPrazoEnabled] = useState(false);
+  const [precoPrazo, setPrecoPrazo] = useState("");
+  const [parcelas, setParcelas] = useState("");
   const [categoria, setCategoria] = useState("");
   const [status, setStatus] = useState<"disponivel" | "indisponivel" | "vendido">("disponivel");
   const [destaque, setDestaque] = useState(false);
@@ -41,6 +44,13 @@ export default function EditarProdutoPage({ params }: PageProps) {
           setCodigo(prod.codigo);
           setDescricao(prod.descricao);
           setPreco(prod.preco.toString().replace(".", ","));
+          
+          if (prod.preco_prazo && prod.parcelas) {
+            setIsPrazoEnabled(true);
+            setPrecoPrazo(prod.preco_prazo.toString().replace(".", ","));
+            setParcelas(prod.parcelas.toString());
+          }
+
           setCategoria(prod.categoria);
           setStatus(prod.status as "disponivel" | "indisponivel" | "vendido");
           setDestaque(prod.destaque);
@@ -99,9 +109,29 @@ export default function EditarProdutoPage({ params }: PageProps) {
     try {
       const precoNum = parseFloat(preco.replace(",", "."));
       if (isNaN(precoNum) || precoNum <= 0) {
-        alert("Por favor, insira um preço válido.");
+        alert("Por favor, insira um preço à vista válido.");
         setSaving(false);
         return;
+      }
+
+      let precoPrazoNum: number | undefined;
+      let parcelasNum: number | undefined;
+
+      if (isPrazoEnabled) {
+        precoPrazoNum = parseFloat(precoPrazo.replace(",", "."));
+        parcelasNum = parseInt(parcelas, 10);
+
+        if (isNaN(precoPrazoNum) || precoPrazoNum <= 0) {
+          alert("Por favor, insira um preço a prazo válido.");
+          setSaving(false);
+          return;
+        }
+
+        if (isNaN(parcelasNum) || parcelasNum <= 0) {
+          alert("Por favor, insira uma quantidade válida de parcelas.");
+          setSaving(false);
+          return;
+        }
       }
 
       const prodData = {
@@ -109,6 +139,8 @@ export default function EditarProdutoPage({ params }: PageProps) {
         codigo,
         descricao,
         preco: precoNum,
+        preco_prazo: precoPrazoNum,
+        parcelas: parcelasNum,
         categoria,
         status,
         destaque,
@@ -191,7 +223,7 @@ export default function EditarProdutoPage({ params }: PageProps) {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
-                Preço (R$)
+                Preço à vista (R$)
               </label>
               <input
                 type="text"
@@ -202,6 +234,58 @@ export default function EditarProdutoPage({ params }: PageProps) {
                 placeholder="Ex: 129,90"
               />
             </div>
+          </div>
+
+          {/* Seção Preço a Prazo */}
+          <div className="flex flex-col gap-4 p-4 border border-zinc-800 rounded-[4px] bg-zinc-900/50">
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                id="isPrazoEnabled"
+                checked={isPrazoEnabled}
+                onChange={(e) => setIsPrazoEnabled(e.target.checked)}
+                className="w-4 h-4 rounded bg-zinc-800 border-zinc-700 focus:ring-0 focus:ring-offset-0 text-white cursor-pointer"
+              />
+              <label
+                htmlFor="isPrazoEnabled"
+                className="text-[11px] font-semibold uppercase tracking-widest text-zinc-300 cursor-pointer select-none"
+              >
+                Habilitar Preço a Prazo
+              </label>
+            </div>
+            
+            {isPrazoEnabled && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
+                    Preço a prazo (R$)
+                  </label>
+                  <input
+                    type="text"
+                    required={isPrazoEnabled}
+                    value={precoPrazo}
+                    onChange={(e) => setPrecoPrazo(e.target.value)}
+                    className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white text-[13px] rounded-[4px] focus:outline-none focus:border-zinc-500"
+                    placeholder="Ex: 149,90"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
+                    Quantidade de parcelas
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="24"
+                    required={isPrazoEnabled}
+                    value={parcelas}
+                    onChange={(e) => setParcelas(e.target.value)}
+                    className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white text-[13px] rounded-[4px] focus:outline-none focus:border-zinc-500"
+                    placeholder="Ex: 3"
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-1.5">

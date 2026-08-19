@@ -49,9 +49,17 @@ export async function ProductRecommendations({ produtoId }: { produtoId: string 
               <h3 className="font-body-md text-body-md text-primary line-clamp-1 group-hover:opacity-80 transition-opacity">
                 {produto.nome}
               </h3>
-              <p className="font-body-md text-body-md text-primary mt-1">
-                R$ {produto.preco.toFixed(2).replace('.', ',')}
-              </p>
+              <div className="flex flex-col gap-0.5">
+                <p className="font-body-md text-body-md text-primary mt-1">
+                  R$ {produto.preco.toFixed(2).replace('.', ',')}
+                  {produto.preco_prazo && produto.parcelas && <span className="text-[10px] font-normal ml-1 lowercase text-secondary">à vista</span>}
+                </p>
+                {produto.preco_prazo && produto.parcelas && (
+                  <p className="text-[11px] text-secondary font-medium">
+                    ou {produto.parcelas}x R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')}
+                  </p>
+                )}
+              </div>
             </div>
           </Link>
         ))}

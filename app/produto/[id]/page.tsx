@@ -105,8 +105,18 @@ export default async function Produto({ params }: { params: Promise<{ id: string
                 </div>
               )}
               <h1 className="text-2xl md:text-3xl uppercase leading-none text-primary font-bold tracking-tight">{produto.nome}</h1>
-              <div className="flex items-center justify-between">
-                <p className="text-lg md:text-xl font-bold text-primary">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
+              <div className="flex items-start justify-between w-full">
+                <div className="flex flex-col gap-1">
+                  <p className="text-lg md:text-xl font-bold text-primary">
+                    R$ {produto.preco.toFixed(2).replace('.', ',')}
+                    {produto.preco_prazo && produto.parcelas && <span className="text-[12px] font-normal ml-2 lowercase tracking-normal">à vista</span>}
+                  </p>
+                  {produto.preco_prazo && produto.parcelas && (
+                    <p className="text-sm text-secondary font-medium tracking-tight">
+                      ou R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')} por {produto.parcelas}x sem juros
+                    </p>
+                  )}
+                </div>
                 <FavoriteButton produto={produto} />
               </div>
             </div>

@@ -42,6 +42,8 @@ export async function GET(request: Request) {
       id: prod.id,
       nome: prod.nome,
       preco: prod.preco,
+      preco_prazo: prod.preco_prazo,
+      parcelas: prod.parcelas,
       imagem: imagensMap[prod.id] || "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop"
     }));
 

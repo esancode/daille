@@ -91,7 +91,16 @@ export default async function VitrinePage({ params }: VitrineParams) {
                   <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src={image} alt={produto.nome} />
                 </div>
                 <p className="font-label-caps text-label-caps uppercase text-primary mb-1 line-clamp-2" title={produto.nome}>{produto.nome}</p>
-                <p className="font-body-sm text-body-sm font-bold mb-unit-sm">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
+                <p className="font-body-sm text-body-sm font-bold mb-1 text-primary">
+                  R$ {produto.preco.toFixed(2).replace('.', ',')}
+                  {produto.preco_prazo && produto.parcelas && <span className="text-[9px] font-normal ml-1 lowercase text-secondary">à vista</span>}
+                </p>
+                {produto.preco_prazo && produto.parcelas && (
+                  <p className="text-[10px] text-secondary font-medium mb-unit-sm">
+                    ou {produto.parcelas}x R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')}
+                  </p>
+                )}
+                {!produto.preco_prazo && <div className="mb-unit-sm" />}
                 <span className="font-label-caps text-label-caps border-b border-transparent group-hover:border-primary transition-all inline-block uppercase text-[10px]">VER DETALHES</span>
               </Link>
             </FadeIn>
