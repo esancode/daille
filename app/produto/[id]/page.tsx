@@ -1,5 +1,5 @@
 import Image from 'next/image';
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 import Link from 'next/link';
 import { Metadata, ResolvingMetadata } from 'next';
 import { getProdutoById, getProdutosDestaque } from '@/services/products';
@@ -51,14 +51,7 @@ export async function generateMetadata(
 export default async function Produto({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const produto = await getProdutoById(resolvedParams.id);
-  const destaques = await getProdutosDestaque();
   
-  let trending = await getTrendingProducts(4);
-  let fresh = await getFreshProducts(4);
-  
-  if (trending.length === 0) trending = destaques.slice(0, 4);
-  if (fresh.length === 0) fresh = destaques.slice(4, 8).length > 0 ? destaques.slice(4, 8) : destaques.slice(0, 4);
-
   if (!produto) {
     return (
       <div className="bg-surface min-h-screen flex items-center justify-center">
@@ -71,6 +64,18 @@ export default async function Produto({ params }: { params: Promise<{ id: string
       </div>
     );
   }
+
+  const [destaques, trendingRes, freshRes] = await Promise.all([
+    getProdutosDestaque(),
+    getTrendingProducts(4),
+    getFreshProducts(4)
+  ]);
+
+  let trending = trendingRes;
+  let fresh = freshRes;
+
+  if (trending.length === 0) trending = destaques.slice(0, 4);
+  if (fresh.length === 0) fresh = destaques.slice(4, 8).length > 0 ? destaques.slice(4, 8) : destaques.slice(0, 4);
 
   const imagemPrincipal = produto.imagens && produto.imagens.length > 0 ? produto.imagens[0].url : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop";
 

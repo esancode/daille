@@ -1,7 +1,5 @@
 import Image from 'next/image';
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-export const fetchCache = 'force-no-store';
+export const revalidate = 60;
 import Link from 'next/link';
 import { getProdutosDestaque } from '@/services/products';
 import { getPopularProducts, getTrendingProducts, getFreshProducts } from '@/services/recommendations';
