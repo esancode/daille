@@ -26,12 +26,23 @@ export default async function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 pointer-events-none"></div>
           </div>
           <FadeIn delay={200} className="relative z-10 w-full md:w-1/2 flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop py-section-gap bg-transparent">
-            <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase mb-unit-lg leading-none text-transparent bg-clip-text bg-gradient-to-b from-zinc-200 via-zinc-400 to-zinc-300 drop-shadow-lg">
-              PRATA 925<br/>CERTIFICADA
-            </h1>
-            <span className="btn-premium font-button-text text-button-text uppercase px-unit-lg py-unit-md border bg-surface text-primary border-surface hover:opacity-80 transition-opacity inline-block">
-              EXPLORAR COLEÇÃO
-            </span>
+            {/* Títulos Anteriores Guardados... */}
+            <div className="flex flex-col items-start">
+              <h1 className="text-white mb-5 drop-shadow-sm flex flex-col items-start">
+                <span className="font-playfair text-[60px] md:text-[90px] leading-[0.85] -ml-1">
+                  Essência
+                </span>
+                <span className="font-sans text-[26px] md:text-[34px] font-light tracking-[0.02em] opacity-95 mt-3 md:mt-4">
+                  da prata 925
+                </span>
+              </h1>
+              <p className="font-sans text-[15px] md:text-[17px] text-white/85 font-light mb-8 max-w-lg tracking-wide drop-shadow-sm">
+                Minimalismo atemporal para um estilo autêntico.
+              </p>
+              <span className="font-sans text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] text-white border-b-[1.5px] border-white pb-1 hover:opacity-70 transition-opacity inline-block drop-shadow-sm cursor-pointer">
+                VER A COLEÇÃO
+              </span>
+            </div>
           </FadeIn>
         </section>
       </Link>

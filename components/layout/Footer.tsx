@@ -39,7 +39,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="font-label-caps text-label-caps uppercase tracking-widest font-bold mb-2">Siga-nos</h3>
             <div className="flex flex-col gap-3">
-              <a href="#" className="flex items-center gap-2 font-body-sm text-[13px] opacity-70 hover:opacity-100 transition-opacity">
+              <a href="https://www.instagram.com/daniivicente_/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-body-sm text-[13px] opacity-70 hover:opacity-100 transition-opacity">
                 <span className="material-symbols-outlined text-[18px]">photo_camera</span>
                 Instagram
               </a>
