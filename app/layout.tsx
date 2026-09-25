@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Daille",
     images: [
       {
-        url: "/hero.png",
+        url: "/galeria1.jpeg",
         width: 1200,
         height: 630,
         alt: "Daille - Coleção Premium",
