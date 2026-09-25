@@ -54,7 +54,7 @@ export default async function Home() {
           
           <Link href="/catalogo?category=colares" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <Image src="/categorias/colar.jfif" alt="Colares" width={400} height={400} className="w-full h-full object-cover" />
+              <img src="/categorias/colar.jfif" alt="Colares" className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">COLARES</span>
@@ -64,7 +64,7 @@ export default async function Home() {
           
           <Link href="/catalogo?category=aneis" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <Image src="/categorias/aneis.jfif" alt="Anéis" width={400} height={400} className="w-full h-full object-cover" />
+              <img src="/categorias/aneis.jfif" alt="Anéis" className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">ANÉIS</span>
@@ -74,7 +74,7 @@ export default async function Home() {
 
           <Link href="/catalogo?category=brincos" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <Image src="/categorias/brincos.jfif" alt="Brincos" width={400} height={400} className="w-full h-full object-cover" />
+              <img src="/categorias/brincos.jfif" alt="Brincos" className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">BRINCOS</span>
@@ -84,7 +84,7 @@ export default async function Home() {
 
           <Link href="/catalogo?category=pulseiras" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <Image src="/categorias/pulseiras.jfif" alt="Pulseiras" width={400} height={400} className="w-full h-full object-cover" />
+              <img src="/categorias/pulseiras.jfif" alt="Pulseiras" className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">PULSEIRAS</span>
