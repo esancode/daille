@@ -103,9 +103,13 @@ export default async function Produto({ params }: { params: Promise<{ id: string
                 <p className="text-xl md:text-2xl font-sans text-[#0A101A]">
                   R$ {produto.preco.toFixed(2).replace('.', ',')}
                 </p>
-                {produto.preco_prazo && produto.parcelas && (
+                {produto.preco_prazo && produto.parcelas ? (
                   <p className="text-[13px] text-[#666666] font-sans mt-1">
-                    ou em até {produto.parcelas}x de R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')}
+                    ou em até {produto.parcelas}x de R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')} no cartão
+                  </p>
+                ) : (
+                  <p className="text-[13px] text-[#666666] font-sans mt-1">
+                    ou até 12x no cartão
                   </p>
                 )}
               </div>

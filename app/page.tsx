@@ -28,9 +28,9 @@ export default async function Home() {
           <div className="flex flex-col items-start relative max-w-xl xl:max-w-2xl py-20">
             {/* Main Title */}
             <h1 className="font-cinzel text-[#0A101A] flex flex-col items-start leading-[1.05] mb-6">
-              <span className="text-[42px] md:text-[64px] lg:text-[75px] tracking-wide whitespace-nowrap">PRATA 925</span>
-              <span className="text-[42px] md:text-[64px] lg:text-[75px] tracking-wide whitespace-nowrap">QUE REALÇA</span>
-              <span className="text-[42px] md:text-[64px] lg:text-[75px] tracking-wide whitespace-nowrap">O SEU MELHOR</span>
+              <span className="text-[34px] sm:text-[42px] md:text-[64px] lg:text-[75px] tracking-wide whitespace-nowrap">PRATA 925</span>
+              <span className="text-[34px] sm:text-[42px] md:text-[64px] lg:text-[75px] tracking-wide whitespace-nowrap">QUE REALÇA</span>
+              <span className="text-[34px] sm:text-[42px] md:text-[64px] lg:text-[75px] tracking-wide whitespace-nowrap">O SEU MELHOR</span>
             </h1>
 
             {/* Subtitle */}
