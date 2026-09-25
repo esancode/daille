@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { createClient as createBrowserClient } from "@/lib/supabase/client";
 import { Produto, Categoria } from "@/types";
 
 export async function getCategorias(): Promise<Categoria[]> {
@@ -141,8 +142,9 @@ export async function createProduto(
   produto: Omit<Produto, "id" | "criado_em" | "imagens">,
   imagens: File[]
 ): Promise<Produto | null> {
+  const browserSupabase = createBrowserClient();
   try {
-    const { data: novoProd, error: prodError } = await supabase
+    const { data: novoProd, error: prodError } = await browserSupabase
       .from("produtos")
       .insert([
         {
@@ -172,7 +174,7 @@ export async function createProduto(
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
       const filePath = `${novoProd.id}/${fileName}`;
 
-      const { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await browserSupabase.storage
         .from("produtos")
         .upload(filePath, file);
 
@@ -181,11 +183,11 @@ export async function createProduto(
       }
 
       if (!uploadError) {
-        const { data: publicUrlData } = supabase.storage
+        const { data: publicUrlData } = browserSupabase.storage
           .from("produtos")
           .getPublicUrl(filePath);
 
-        const { data: imgData, error: dbImgError } = await supabase
+        const { data: imgData, error: dbImgError } = await browserSupabase
           .from("imagens")
           .insert([
             {
@@ -207,7 +209,7 @@ export async function createProduto(
       }
     }
 
-    const { error: scoreError } = await supabase
+    const { error: scoreError } = await browserSupabase
       .from("score_produtos")
       .insert([
         {
@@ -236,8 +238,9 @@ export async function updateProduto(
   novasImagens?: File[],
   imagensRemovidasUrls?: string[]
 ): Promise<Produto | null> {
+  const browserSupabase = createBrowserClient();
   try {
-    const { data: prodAtualizado, error: prodError } = await supabase
+    const { data: prodAtualizado, error: prodError } = await browserSupabase
       .from("produtos")
       .update(produto)
       .eq("id", id)
@@ -250,7 +253,7 @@ export async function updateProduto(
     }
 
     if (imagensRemovidasUrls && imagensRemovidasUrls.length > 0) {
-      const { error: delImgError } = await supabase
+      const { error: delImgError } = await browserSupabase
         .from("imagens")
         .delete()
         .eq("produto_id", id)
@@ -262,13 +265,13 @@ export async function updateProduto(
         const pathMatch = url.match(/produtos\/(.+)$/);
         if (pathMatch && pathMatch[1]) {
           const decodePath = decodeURIComponent(pathMatch[1]);
-          const { error: remError } = await supabase.storage.from("produtos").remove([decodePath]);
+          const { error: remError } = await browserSupabase.storage.from("produtos").remove([decodePath]);
           if (remError) console.error(remError);
         }
       }
     }
 
-    const { data: imagensExistentes, error: getImgError } = await supabase
+    const { data: imagensExistentes, error: getImgError } = await browserSupabase
       .from("imagens")
       .select("*")
       .eq("produto_id", id)
@@ -290,18 +293,18 @@ export async function updateProduto(
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
         const filePath = `${id}/${fileName}`;
 
-        const { error: uploadError } = await supabase.storage
+        const { error: uploadError } = await browserSupabase.storage
           .from("produtos")
           .upload(filePath, file);
 
         if (uploadError) console.error(uploadError);
 
         if (!uploadError) {
-          const { data: publicUrlData } = supabase.storage
+          const { data: publicUrlData } = browserSupabase.storage
             .from("produtos")
             .getPublicUrl(filePath);
 
-          const { data: imgData, error: dbImgError } = await supabase
+          const { data: imgData, error: dbImgError } = await browserSupabase
             .from("imagens")
             .insert([
               {
@@ -322,7 +325,7 @@ export async function updateProduto(
       }
     }
 
-    const { data: imagensFinais, error: getFinalImgError } = await supabase
+    const { data: imagensFinais, error: getFinalImgError } = await browserSupabase
       .from("imagens")
       .select("*")
       .eq("produto_id", id)
@@ -341,8 +344,9 @@ export async function updateProduto(
 }
 
 export async function deleteProduto(id: string): Promise<boolean> {
+  const browserSupabase = createBrowserClient();
   try {
-    const { data: imagens, error: getImgError } = await supabase
+    const { data: imagens, error: getImgError } = await browserSupabase
       .from("imagens")
       .select("url")
       .eq("produto_id", id);
@@ -354,16 +358,16 @@ export async function deleteProduto(id: string): Promise<boolean> {
         const pathMatch = img.url.match(/produtos\/(.+)$/);
         if (pathMatch && pathMatch[1]) {
           const decodePath = decodeURIComponent(pathMatch[1]);
-          const { error: remError } = await supabase.storage.from("produtos").remove([decodePath]);
+          const { error: remError } = await browserSupabase.storage.from("produtos").remove([decodePath]);
           if (remError) console.error(remError);
         }
       }
     }
 
-    const { error: delImgsError } = await supabase.from("imagens").delete().eq("produto_id", id);
+    const { error: delImgsError } = await browserSupabase.from("imagens").delete().eq("produto_id", id);
     if (delImgsError) console.error(delImgsError);
 
-    const { error: prodError } = await supabase
+    const { error: prodError } = await browserSupabase
       .from("produtos")
       .delete()
       .eq("id", id);
@@ -378,8 +382,9 @@ export async function deleteProduto(id: string): Promise<boolean> {
 }
 
 export async function marcarComoVendido(id: string): Promise<boolean> {
+  const browserSupabase = createBrowserClient();
   try {
-    const { error } = await supabase
+    const { error } = await browserSupabase
       .from("produtos")
       .update({ status: "vendido" })
       .eq("id", id);
