@@ -103,7 +103,7 @@ export default async function Catalogo({ searchParams }: { searchParams: Promise
         <div className="w-full md:w-1/2 relative min-h-[300px] md:min-h-full">
           <div 
             className="absolute inset-0 bg-cover bg-center md:bg-[center_20%]"
-            style={{ backgroundImage: "url('/imagemherocompleta.jfif')" }}
+            style={{ backgroundImage: "url('/imagemherocompleta.jpg')" }}
           ></div>
         </div>
       </section>
@@ -221,7 +221,7 @@ export default async function Catalogo({ searchParams }: { searchParams: Promise
       <section className="w-full relative min-h-[350px] md:min-h-[450px] flex items-center overflow-hidden bg-[#0A101A]">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-[center_top] md:bg-[center_30%] bg-[url('/banners/banner2mobile.jfif')] md:bg-[url('/banners/imagemcorrigida.jfif')]" 
+          className="absolute inset-0 z-0 bg-cover bg-[center_top] md:bg-[center_30%] bg-[url('/banners/banner2mobile.jpg')] md:bg-[url('/banners/imagemcorrigida.jpg')]" 
         ></div>
 
         {/* Shadow Overlay for text readability (in case image is bright) */}

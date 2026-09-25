@@ -19,7 +19,7 @@ export default async function Home() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center" 
-          style={{ backgroundImage: "url('/imagemherocompleta.jfif')" }}
+          style={{ backgroundImage: "url('/imagemherocompleta.jpg')" }}
         ></div>
 
         {/* Content Container */}
@@ -54,7 +54,7 @@ export default async function Home() {
           
           <Link href="/catalogo?category=colares" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <img src="/categorias/colar.jfif" alt="Colares" className="w-full h-full object-cover" />
+              <Image src="/categorias/colar.jpg" alt="Colares" width={400} height={400} className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">COLARES</span>
@@ -64,7 +64,7 @@ export default async function Home() {
           
           <Link href="/catalogo?category=aneis" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <img src="/categorias/aneis.jfif" alt="Anéis" className="w-full h-full object-cover" />
+              <Image src="/categorias/aneis.jpg" alt="Anéis" width={400} height={400} className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">ANÉIS</span>
@@ -74,7 +74,7 @@ export default async function Home() {
 
           <Link href="/catalogo?category=brincos" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <img src="/categorias/brincos.jfif" alt="Brincos" className="w-full h-full object-cover" />
+              <Image src="/categorias/brincos.jpg" alt="Brincos" width={400} height={400} className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">BRINCOS</span>
@@ -84,7 +84,7 @@ export default async function Home() {
 
           <Link href="/catalogo?category=pulseiras" className="group flex flex-col cursor-pointer">
             <div className="aspect-square bg-page-bg mb-4 flex items-center justify-center border-[1.5px] border-transparent group-hover:border-[#0A101A]">
-              <img src="/categorias/pulseiras.jfif" alt="Pulseiras" className="w-full h-full object-cover" />
+              <Image src="/categorias/pulseiras.jpg" alt="Pulseiras" width={400} height={400} className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-2 text-accent">
               <span className="font-sans text-[11px] md:text-[13px] font-bold tracking-[0.15em] uppercase">PULSEIRAS</span>
@@ -101,9 +101,11 @@ export default async function Home() {
           
           {/* Left Image */}
           <div className="w-full md:w-[45%] flex justify-center md:justify-start mb-8 md:mb-0">
-            <img 
-              src="/colecao/imagem_2.jfif" 
+            <Image 
+              src="/colecao/imagem_2.jpg" 
               alt="Coleção Essencial" 
+              width={400}
+              height={500}
               className="w-full max-w-[400px] aspect-[4/5] object-cover bg-[#F5F5F5]" 
             />
           </div>
@@ -145,7 +147,7 @@ export default async function Home() {
       <section className="w-full relative min-h-[450px] md:min-h-[550px] flex items-center overflow-hidden bg-[#0A101A]">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center md:bg-[center_top] bg-[url('/banners/bannermobile.jfif')] md:bg-[url('/banners/banner1.jfif')]" 
+          className="absolute inset-0 z-0 bg-cover bg-center md:bg-[center_top] bg-[url('/banners/bannermobile.jpg')] md:bg-[url('/banners/banner1.jpg')]" 
         ></div>
 
         {/* Content Container */}
@@ -172,14 +174,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <ProductShowcase title="ESCOLHAS ESPECIAIS" subtitle="DESTAQUES DA COLEÇÃO" produtos={trending} viewAllLink="/vitrine/destaques" />
+      <ProductShowcase title="ESCOLHAS ESPECIAIS" subtitle="DESTAQUES DA COLEÇÃO" produtos={trending} viewAllLink="/catalogo" />
 
       {/* Atemporal Banner Section */}
       <section className="w-full relative min-h-[450px] md:min-h-[550px] flex items-center overflow-hidden bg-[#0A101A]">
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center md:bg-right" 
-          style={{ backgroundImage: "url('/banners/banner2.jfif')" }}
+          style={{ backgroundImage: "url('/banners/banner2.jpg')" }}
         ></div>
 
         {/* Content Container */}
@@ -205,14 +207,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <ProductShowcase title="MAIS VENDIDOS" produtos={[...populares].reverse()} viewAllLink="/vitrine/mais-vendidos" />
+      <ProductShowcase title="MAIS VENDIDOS" produtos={[...populares].reverse()} viewAllLink="/catalogo" />
 
       {/* Detalhes Banner Section */}
       <section className="w-full relative min-h-[450px] md:min-h-[550px] flex items-center overflow-hidden bg-[#0A101A]">
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-[80%_center] sm:bg-right md:bg-[center_top]" 
-          style={{ backgroundImage: "url('/banners/banner3.jfif')" }}
+          style={{ backgroundImage: "url('/banners/banner3.jpg')" }}
         ></div>
 
         {/* Shadow Overlay for text readability */}
@@ -250,10 +252,10 @@ export default async function Home() {
             {/* Images Container */}
             <div className="w-full md:w-[65%] flex gap-4 md:gap-6 shrink-0">
               <div className="flex-1 max-w-[400px] aspect-[4/5] overflow-hidden bg-[#F5F5F5]">
-                <img src="/banners/imagem_vertical_1.jfif" alt="Prata 925 Detalhe 1" className="w-full h-full object-cover mix-blend-multiply" />
+                <Image width={400} height={500} src="/banners/imagem_vertical_1.jpg" alt="Prata 925 Detalhe 1" className="w-full h-full object-cover mix-blend-multiply" />
               </div>
               <div className="flex-1 max-w-[400px] aspect-[4/5] overflow-hidden bg-[#F5F5F5]">
-                <img src="/banners/imagem_vertical_2.jfif" alt="Prata 925 Detalhe 2" className="w-full h-full object-cover object-right mix-blend-multiply" />
+                <Image width={400} height={500} src="/banners/imagem_vertical_2.jpg" alt="Prata 925 Detalhe 2" className="w-full h-full object-cover object-right mix-blend-multiply" />
               </div>
             </div>
 
@@ -289,7 +291,7 @@ export default async function Home() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center mix-blend-screen opacity-80" 
-          style={{ backgroundImage: "url('/banners/banner_email.jfif')" }}
+          style={{ backgroundImage: "url('/banners/banner_email.jpg')" }}
         ></div>
 
         {/* Content Container */}
