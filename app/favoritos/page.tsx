@@ -3,64 +3,73 @@
 import React from "react";
 import Link from "next/link";
 import { useFavorites } from "@/hooks/useFavorites";
-import { ProductTag } from "@/components/product/ProductTag";
+import { FavoriteIcon } from "@/components/product/ProductIcons";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export default function Favoritos() {
-  const { favorites, toggleFavorite } = useFavorites();
+  const { favorites } = useFavorites();
 
   return (
-    <div className="bg-surface min-h-screen flex flex-col">
-      
-      <main className="flex-1 w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-unit-xl">
-        <div className="flex justify-between items-end mb-unit-lg border-b border-tertiary pb-unit-sm">
-          <h1 className="font-headline-md text-headline-md uppercase text-[20px] md:text-[28px] tracking-widest text-primary">
+    <div className="bg-[#FDFDFD] min-h-screen flex flex-col">
+      <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 md:px-16 pt-12 md:pt-16 pb-20">
+        
+        <div className="flex flex-col mb-12 md:mb-16">
+          <h1 className="text-2xl md:text-[32px] uppercase leading-none text-[#0A101A] font-bold tracking-tight mb-4">
             SEUS FAVORITOS
           </h1>
+          <div className="w-full h-px bg-[#E0E0E0]"></div>
         </div>
 
         {favorites.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="font-body-md text-secondary text-lg mb-8 uppercase tracking-widest">Você ainda não salvou nenhum produto.</p>
-            <Link href="/catalogo" className="btn-premium px-8 py-4 bg-primary text-on-primary text-xs font-bold uppercase tracking-widest inline-block hover:opacity-80 transition-opacity">
+          <div className="flex flex-col items-center justify-center py-20 bg-[#F5F5F5] border border-[#E0E0E0] rounded-[4px]">
+            <p className="font-sans text-[14px] md:text-[16px] text-[#666666] mb-6 tracking-wide">
+              Você ainda não salvou nenhum produto.
+            </p>
+            <Link 
+              href="/catalogo" 
+              className="px-8 py-4 bg-[#0A101A] text-white font-sans text-[11px] md:text-[12px] font-bold tracking-[0.15em] uppercase hover:opacity-90 transition-opacity rounded-[4px]"
+            >
               EXPLORAR COLEÇÃO
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
-            {favorites.map((item, index) => (
-              <FadeIn key={item.id} delay={index * 50} className="flex flex-col group relative">
-                <Link href={`/produto/${item.id}`} className="relative aspect-square overflow-hidden mb-unit-md bg-surface-container max-h-[380px]">
-                  {item.tag && <ProductTag tag={item.tag} className="absolute top-2 right-2" />}
-                  <img 
-                    className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" 
-                    src={item.imagens && item.imagens.length > 0 ? item.imagens[0].url : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop"} 
-                    alt={item.nome} 
-                  />
-                </Link>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleFavorite(item);
-                  }}
-                  className="absolute top-2 left-2 z-10 w-8 h-8 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-surface transition-colors cursor-pointer"
-                  title="Remover dos favoritos"
-                >
-                  <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    favorite
-                  </span>
-                </button>
-                <div className="flex flex-col flex-1">
-                  <p className="font-label-caps text-label-caps uppercase text-primary mb-1 line-clamp-1">{item.nome}</p>
-                  <p className="font-body-sm text-body-sm font-bold text-primary mb-unit-sm">R$ {item.preco.toFixed(2).replace('.', ',')}</p>
-                  <div className="mt-auto">
-                    <Link href={`/produto/${item.id}`} className="font-label-caps text-label-caps border-b border-transparent group-hover:border-primary transition-all inline-block uppercase text-[10px] text-primary">
-                      VER DETALHES
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
+            {favorites.map((produto, index) => {
+              const image = produto.imagens && produto.imagens.length > 0 
+                ? produto.imagens[0].url 
+                : "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop";
+
+              return (
+                <FadeIn key={produto.id} delay={index * 50} className="group flex flex-col h-full">
+                  {/* Image Container */}
+                  <div className="aspect-square overflow-hidden mb-4 relative bg-[#F5F5F5] shrink-0 flex items-center justify-center">
+                    <FavoriteIcon produto={produto} />
+                    <Link href={`/produto/${produto.id}`} className="w-full h-full block">
+                      <img 
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" 
+                        src={image} 
+                        alt={produto.nome} 
+                      />
                     </Link>
                   </div>
-                </div>
-              </FadeIn>
-            ))}
+
+                  {/* Text Data Container */}
+                  <div className="flex flex-col flex-1 px-1">
+                    <Link href={`/produto/${produto.id}`}>
+                      <p className="font-sans text-[13px] md:text-[14px] text-[#333333] mb-3 line-clamp-1 hover:underline" title={produto.nome}>
+                        {produto.nome}
+                      </p>
+                    </Link>
+                    
+                    <div className="flex items-center justify-between mt-auto">
+                      <p className="font-sans text-[12px] md:text-[14px] font-bold text-[#0A101A]">
+                        R$ {produto.preco.toFixed(2).replace('.', ',')}
+                      </p>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
           </div>
         )}
       </main>

@@ -1,16 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tertiary: #0A1F5C;
-  --color-on-tertiary: #ffffff;
+  --color-page-bg: #FFFFFF;
+  --color-accent: #0A101A;
+  --color-text-main: #2C333F;
+  --color-divider: #E0E0E0;
+  --color-hover: #1A2533;
+
+  /* Old variables temporarily restored to fix current UI visibility */
   --color-primary: #000000;
   --color-on-primary: #ffffff;
+  --color-tertiary: #0A101A;
+  --color-on-tertiary: #ffffff;
   --color-surface: #f9f9f9;
   --color-surface-container: #eeeeee;
   --color-outline-variant: #cfc4c5;
   --color-secondary: #5d5f5f;
   --color-background: #f9f9f9;
   --color-on-background: #1b1b1b;
+  
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
 
@@ -21,85 +29,67 @@
   --radius-xl: 0px;
   --radius-2xl: 0px;
   --radius-3xl: 0px;
-  --radius-full: 0px;
+  --radius-full: 9999px;
 
   --spacing-unit-xs: 4px;
   --spacing-unit-sm: 8px;
   --spacing-unit-md: 16px;
   --spacing-unit-lg: 32px;
-  --spacing-gutter: 24px;
-  --spacing-section-gap: 120px;
-  --spacing-margin-mobile: 20px;
-  --spacing-margin-desktop: 80px;
+  --spacing-gutter-desktop: 30px;
+  --spacing-gutter-tablet: 20px;
+  --spacing-gutter-mobile: 16px;
+  
+  --spacing-gap-large: 120px;
+  --spacing-gap-large-mobile: 80px;
+  --spacing-gap-medium: 40px;
+  --spacing-gap-medium-mobile: 24px;
+  --spacing-gap-small: 24px;
+  --spacing-gap-small-mobile: 16px;
 
-  --font-body-lg: "Inter", sans-serif;
-  --font-headline-lg-mobile: "Montserrat", sans-serif;
-  --font-headline-md: "Montserrat", sans-serif;
-  --font-headline-lg: "Montserrat", sans-serif;
-  --font-body-sm: "Inter", sans-serif;
-  --font-display-lg: "Montserrat", sans-serif;
-  --font-label-caps: "Inter", sans-serif;
-  --font-button-text: "Inter", sans-serif;
+  --spacing-margin-desktop: 10%;
+  --spacing-margin-notebook: 8%;
+  --spacing-margin-tablet: 6%;
+  --spacing-margin-mobile: 5%;
+
+  --font-heading: "var(--font-cinzel)", serif;
+  --font-sans: "var(--font-montserrat)", sans-serif;
+  --font-inter: "var(--font-inter)", sans-serif;
 }
 
-@utility text-body-lg {
-  font-size: 18px;
-  line-height: 28px;
-  letter-spacing: 0em;
+@utility text-body {
+  font-size: 16px;
+  line-height: 1.6;
   font-weight: 400;
 }
-@utility text-headline-lg-mobile {
+@utility text-heading-hero {
+  font-family: var(--font-cinzel);
+  font-size: 72px;
+  font-weight: 700;
+}
+@utility text-heading-hero-tablet {
+  font-family: var(--font-cinzel);
+  font-size: 50px;
+  font-weight: 700;
+}
+@utility text-heading-hero-mobile {
+  font-family: var(--font-cinzel);
   font-size: 40px;
-  line-height: 44px;
-  letter-spacing: -0.02em;
   font-weight: 700;
 }
-@utility text-headline-md {
-  font-size: 32px;
-  line-height: 40px;
-  letter-spacing: 0em;
-  font-weight: 700;
+@utility text-heading-collection {
+  font-family: var(--font-cinzel);
+  font-size: 40px;
+  font-weight: 600;
 }
-@utility text-headline-lg {
-  font-size: 64px;
-  line-height: 72px;
-  letter-spacing: -0.02em;
-  font-weight: 700;
-}
-@utility text-body-sm {
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: 0em;
-  font-weight: 400;
-}
-@utility text-display-lg {
-  font-size: 120px;
-  line-height: 110px;
-  letter-spacing: -0.04em;
-  font-weight: 900;
-}
-@utility text-label-caps {
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.15em;
-  font-weight: 700;
-}
-@utility text-button-text {
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.1em;
-  font-weight: 700;
-}
-
-:root {
-  --background: #f9f9f9;
-  --foreground: #1b1b1b;
+@utility text-heading-section {
+  font-family: var(--font-cinzel);
+  font-size: 30px;
+  font-weight: 600;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: "Inter", sans-serif;
+  color: #2C333F;
+  font-family: "var(--font-montserrat)", sans-serif;
   min-height: 100dvh;
 }
 

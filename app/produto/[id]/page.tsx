@@ -5,10 +5,6 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { getProdutoById, getProdutosDestaque } from '@/services/products';
 import { ProductImageGallery } from './ProductImageGallery';
 import { ProductActions } from '@/components/product/ProductActions';
-import { ProductAccordion } from '@/components/product/ProductAccordion';
-import { ProductTag } from '@/components/product/ProductTag';
-import { FavoriteButton } from '@/components/product/FavoriteButton';
-import { FadeIn } from '@/components/ui/FadeIn';
 import { ProductViewTracker } from '@/components/product/ProductViewTracker';
 import { ProductRecommendations } from '@/components/product/ProductRecommendations';
 import { ProductShowcase } from '@/components/product/ProductShowcase';
@@ -81,110 +77,100 @@ export default async function Produto({ params }: { params: Promise<{ id: string
 
   return (
     <div className="bg-surface min-h-screen overflow-x-hidden">
-      <main className="w-full px-margin-mobile md:px-margin-desktop pt-12 md:pt-20 pb-24 md:pb-32">
+      <main className="w-full px-margin-mobile md:px-margin-desktop pt-12 md:pt-16 pb-8 md:pb-12">
         <ProductViewTracker produtoId={produto.id} />
-        {/* Breadcrumbs */}
-        <div className="text-[9px] uppercase tracking-widest text-secondary mb-8 md:mb-12 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary transition-colors">INÍCIO</Link>
-          <span className="text-tertiary">/</span>
-          <Link href="/catalogo" className="hover:text-primary transition-colors">CATÁLOGO</Link>
-          <span className="text-tertiary">/</span>
-          <span className="text-primary truncate max-w-[200px] md:max-w-md">{produto.nome}</span>
-        </div>
-
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-unit-xl items-start">
-          {/* Hero Image */}
-          <div className="w-full">
+        <div className="flex flex-col lg:grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-start w-full max-w-[1200px] mx-auto mt-4">
+          <div className="w-full relative flex flex-col gap-6 lg:sticky lg:top-32">
             <ProductImageGallery 
               images={produto.imagens || []} 
               altText={produto.nome} 
+              produto={produto}
             />
           </div>
 
-          {/* Product Info */}
-          <FadeIn direction="right" delay={200} className="flex flex-col justify-center h-full space-y-unit-md w-full mt-8 md:mt-0">
-            <div className="space-y-unit-xs">
-              {produto.tag && (
-                <div className="mb-2">
-                  <ProductTag tag={produto.tag} className="inline-block" />
+          {/* Right Column: Product Info */}
+          <div className="flex flex-col w-full">
+            
+            <div className="mb-6">
+              <span className="font-sans text-[10px] md:text-[11px] font-bold tracking-[0.15em] text-[#0A101A] uppercase mb-3 block">
+                COLEÇÃO ATEMPORAL
+              </span>
+              <h1 className="text-2xl md:text-3xl lg:text-[32px] uppercase leading-none text-[#0A101A] font-bold tracking-tight mb-6">
+                {produto.nome}
+              </h1>
+              
+              <div className="mb-6">
+                <p className="text-xl md:text-2xl font-sans text-[#0A101A]">
+                  R$ {produto.preco.toFixed(2).replace('.', ',')}
+                </p>
+                {produto.preco_prazo && produto.parcelas && (
+                  <p className="text-[13px] text-[#666666] font-sans mt-1">
+                    ou em até {produto.parcelas}x de R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')}
+                  </p>
+                )}
+              </div>
+
+              {produto.descricao && (
+                <div className="text-[#666666] font-sans text-[14px] leading-relaxed mb-8">
+                  {produto.descricao}
                 </div>
               )}
-              <h1 className="text-2xl md:text-3xl uppercase leading-none text-primary font-bold tracking-tight">{produto.nome}</h1>
-              <div className="flex items-start justify-between w-full">
-                <div className="flex flex-col gap-1">
-                  <p className="text-lg md:text-xl font-bold text-primary">
-                    R$ {produto.preco.toFixed(2).replace('.', ',')}
-                    {produto.preco_prazo && produto.parcelas && <span className="text-[12px] font-normal ml-2 lowercase tracking-normal">à vista</span>}
-                  </p>
-                  {produto.preco_prazo && produto.parcelas && (
-                    <p className="text-sm text-secondary font-medium tracking-tight">
-                      ou R$ {(produto.preco_prazo / produto.parcelas).toFixed(2).replace('.', ',')} por {produto.parcelas}x sem juros
-                    </p>
-                  )}
-                </div>
-                <FavoriteButton produto={produto} />
+            </div>
+
+            {/* Benefits Icons Grid */}
+            <div className="grid grid-cols-4 gap-4 mb-10 pb-10 border-b border-[#E0E0E0]/0">
+              <div className="flex flex-col items-center text-center gap-3">
+                <span className="material-symbols-outlined text-[#0A101A] text-[28px] font-light">diamond</span>
+                <span className="font-sans text-[10px] text-[#0A101A] uppercase tracking-wider">Prata 925 legítima</span>
+              </div>
+              <div className="flex flex-col items-center text-center gap-3">
+                <span className="material-symbols-outlined text-[#0A101A] text-[28px] font-light">flare</span>
+                <span className="font-sans text-[10px] text-[#0A101A] uppercase tracking-wider">Zircônia de alto brilho</span>
+              </div>
+              <div className="flex flex-col items-center text-center gap-3">
+                <span className="material-symbols-outlined text-[#0A101A] text-[28px] font-light">spa</span>
+                <span className="font-sans text-[10px] text-[#0A101A] uppercase tracking-wider">Hipoalergênico</span>
+              </div>
+              <div className="flex flex-col items-center text-center gap-3">
+                <span className="material-symbols-outlined text-[#0A101A] text-[28px] font-light">workspace_premium</span>
+                <span className="font-sans text-[10px] text-[#0A101A] uppercase tracking-wider">Garantia vitalícia</span>
               </div>
             </div>
             
             <ProductActions produto={produto} />
-
-            <ProductAccordion descricao={produto.descricao} />
-          </FadeIn>
+          </div>
         </div>
-
-        {/* You May Also Like Section (Recommendations) */}
-        <ProductRecommendations produtoId={produto.id} />
-
       </main>
 
-      {/* Middle Banner */}
-      <div className="w-full bg-tertiary py-unit-lg px-margin-mobile border-y border-outline-variant overflow-hidden">
-        <FadeIn direction="none" className="max-w-4xl mx-auto text-center">
-          <h3 className="font-headline-md text-headline-md text-on-tertiary uppercase leading-tight tracking-widest text-[20px] md:text-[28px]">
-            PRATA 925 CERTIFICADA. O TOQUE DE LUXO QUE VOCÊ MERECE.
-          </h3>
-        </FadeIn>
+      <div className="w-full bg-[#FDFDFD] pt-6 pb-16">
+        <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4">
+          <div className="flex items-center gap-4">
+            <span className="material-symbols-outlined text-[28px] text-[#0A101A] font-light">local_shipping</span>
+            <div className="flex flex-col">
+              <span className="font-sans text-[11px] font-bold tracking-[0.15em] text-[#0A101A] uppercase">ENTREGA SEGURA</span>
+              <span className="font-sans text-[13px] text-[#666666]">Em todo o Brasil</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="material-symbols-outlined text-[28px] text-[#0A101A] font-light">support_agent</span>
+            <div className="flex flex-col">
+              <span className="font-sans text-[11px] font-bold tracking-[0.15em] text-[#0A101A] uppercase">ATENDIMENTO ESPECIALIZADO</span>
+              <span className="font-sans text-[13px] text-[#666666]">Segunda a Sexta - 8h às 18h</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="material-symbols-outlined text-[28px] text-[#0A101A] font-light">lock</span>
+            <div className="flex flex-col">
+              <span className="font-sans text-[11px] font-bold tracking-[0.15em] text-[#0A101A] uppercase">PAGAMENTO SEGURO</span>
+              <span className="font-sans text-[13px] text-[#666666]">Diversas formas de pagamento</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <ProductShowcase title="EM ALTA" produtos={trending} viewAllLink="/vitrine/em-alta" />
-      <ProductShowcase title="NOVIDADES" produtos={fresh} viewAllLink="/vitrine/novidades" />
-
-      {/* Galeria de Estilo Section */}
-      <section className="px-margin-mobile md:px-margin-desktop py-unit-lg border-t border-tertiary">
-        <div className="mb-unit-md">
-          <h3 className="font-headline-md text-headline-md uppercase text-center text-primary">GALERIA DE ESTILO</h3>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-          <div className="space-y-gutter">
-            <FadeIn direction="left" delay={100} className="aspect-[16/9] overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria1.jpeg" alt="Look 1" />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
-              </div>
-            </FadeIn>
-            <FadeIn direction="left" delay={200} className="aspect-square overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria2.jpeg" alt="Look 2" />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
-              </div>
-            </FadeIn>
-          </div>
-          <div className="space-y-gutter">
-            <FadeIn direction="right" delay={100} className="aspect-square overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria3.jpeg" alt="Look 3" />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
-              </div>
-            </FadeIn>
-            <FadeIn direction="right" delay={200} className="aspect-[16/9] overflow-hidden border border-tertiary relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105" src="/produto_galeria4.jpeg" alt="Look 4" />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span className="text-on-tertiary font-label-caps tracking-widest cursor-pointer underline-slide">VER LOOK</span>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
+      <div>
+        <ProductShowcase title="VOCÊ TAMBÉM PODE GOSTAR" produtos={trending} viewAllLink="/catalogo" />
+      </div>
     </div>
   );
 }

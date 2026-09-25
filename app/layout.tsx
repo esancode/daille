@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat, Cinzel_Decorative } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/hooks/useCart";
 import { FavoritesProvider } from "@/hooks/useFavorites";
@@ -13,6 +13,12 @@ const inter = Inter({
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
+});
+
+const cinzel = Cinzel_Decorative({
+  weight: ["400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-cinzel",
 });
 
 export const metadata: Metadata = {
@@ -47,12 +53,14 @@ export default function RootLayout({
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
       </head>
-      <body className={`${inter.variable} ${montserrat.variable} bg-surface text-on-surface font-sans`} suppressHydrationWarning>
-        <FavoritesProvider>
-          <CartProvider>
-            <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
-          </CartProvider>
-        </FavoritesProvider>
+      <body className={`${cinzel.variable} ${montserrat.variable} ${inter.variable} bg-[#FDFDFD] font-sans antialiased`} suppressHydrationWarning>
+        <div className="w-full bg-[#FDFDFD] min-h-screen relative flex flex-col overflow-x-hidden">
+          <FavoritesProvider>
+            <CartProvider>
+              <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
+            </CartProvider>
+          </FavoritesProvider>
+        </div>
       </body>
     </html>
   );
